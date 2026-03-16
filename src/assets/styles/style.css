@@ -1,0 +1,22 @@
+:root {
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  height: min(9dvh, 19dvw);
+  position: fixed;
+  display: flex;
+}
+
+nav {
+  height: 100%;
+}
+
+.screen-info {
+  height: 91dvh;
+}
