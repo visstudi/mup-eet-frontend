@@ -1,22 +1,141 @@
+@font-face {
+  font-family: "Onest";
+  src: url("../fonts/Onest-VariableFont_wght.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: fallback;
+}
+
 :root {
 }
 
 * {
+  font-family: "Onest", "Arial", sans-serif;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
+button {
+  border: none;
+  background: none;
+}
+
 header {
   height: min(9dvh, 19dvw);
-  position: fixed;
-  display: flex;
+  width: 100%;
 }
 
 nav {
+  padding: min(4%, 2dvh) 8%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
   height: 100%;
 }
 
+.nav-button {
+  width: min(5%, 2.5dvh);
+}
+
+.nav-button img {
+  width: 100%;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+}
+
+hr {
+  border: none;
+  background-image: url("../images/divider.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+  height: min(3.25dvh, 4.5rem);
+}
+
 .screen-info {
+  display: flex;
+  flex-direction: column;
+  gap: min(4%, 2dvh);
   height: 91dvh;
+  padding: min(6%, 6dvh);
+}
+
+#main-title {
+  height: 47%;
+  display: flex;
+  padding: 6% 1%;
+  flex-direction: column;
+}
+
+#main-title p,
+#main-title h1 {
+  text-align: end;
+}
+
+#main-title p {
+  font-size: 3rem;
+  font-weight: 300;
+}
+
+#main-title h1 {
+  font-size: 4rem;
+  font-weight: 800;
+  color: #3e8de9;
+}
+
+#main-title-background {
+  max-height: 46.5%;
+}
+
+#main-title-delimiter {
+  max-height: 13.75%;
+}
+
+#main-buttons {
+  height: 53%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 2%;
+}
+
+#main-buttons button {
+  padding: 1%;
+  background-color: rgba(210, 210, 210, 0.28);
+  border-radius: min(3rem, 2dvh);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5%;
+  color: #3f3f3f;
+}
+
+#main-buttons button p {
+  font-size: min(2rem, 2dvh);
+}
+
+#main-buttons button img {
+  height: max(22.5%, 2dvw);
+}
+
+#routes-button {
+  grid-column: span 2;
+}
+
+#main-section {
+  background-image: radial-gradient(
+    circle at 125% 35%,
+    rgba(112, 157, 207, 0.5),
+    #fff 40%
+  );
 }

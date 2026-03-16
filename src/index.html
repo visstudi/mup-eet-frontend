@@ -9,7 +9,7 @@
   <body>
     <header>
       <nav>
-        <span id="empty-dark-mode"></span>
+        <div class="nav-button"></div>
         <a href="./index.html" class="logo">
           <img
             class="logo"
@@ -17,19 +17,56 @@
             alt="Логотип МУП ЭЭТ"
           />
         </a>
-        <button id="dark-mode-button">
+        <button class="nav-button" id="dark-mode-button">
           <img
             id="dark-mode-icon"
-            src="./assets/icons/dark-mode.svg"
+            src="./assets/icons/darkmode.svg"
             alt="Темная тема"
           />
         </button>
       </nav>
     </header>
     <main>
-      <section class="screen-info"></section>
+      <section class="screen-info" id="main-section">
+        <div id="main-title">
+          <img
+            id="main-title-background"
+            src="./assets/images/patterns.svg"
+            alt=""
+          />
+          <p>Вас приветствует МУП</p>
+          <h1>ЭнгельсЭлектроТранс</h1>
+          <img
+            id="main-title-delimiter"
+            src="./assets/images/Vector.svg"
+            alt=""
+          />
+        </div>
+        <div id="main-buttons">
+          <button id="routes-button">
+            <img src="./assets/icons/routing.svg" alt="Маршруты" />
+            <p>Маршруты</p>
+          </button>
+          <button id="about-button">
+            <img src="./assets/icons/info-circle.svg" alt="О нас" />
+            <p>О нас</p>
+          </button>
+          <button id="payment-button">
+            <img src="./assets/icons/card.svg" alt="Оплата" />
+            <p>Оплата</p>
+          </button>
+          <button id="jobs-button">
+            <img src="./assets/icons/user-hand-up.svg" alt="Вакансии" />
+            <p>Вакансии</p>
+          </button>
+          <button id="request-button">
+            <img src="./assets/icons/shield-warning.svg" alt="Обращение" />
+            <p>Обращение</p>
+          </button>
+        </div>
+      </section>
       <hr />
-      <section class="screen-info"></section>
+      <section class="screen-info" id="about-section"></section>
       <hr />
       <section class="screen-info"></section>
       <hr />
