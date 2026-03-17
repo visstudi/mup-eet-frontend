@@ -21,6 +21,17 @@ button {
   background: none;
 }
 
+a,
+a:visited {
+  font-size: min(2rem, 2dvh);
+  color: #3e8de9;
+  text-decoration: none;
+}
+
+address {
+  font-style: normal;
+}
+
 header {
   height: min(9dvh, 19dvw);
   width: 100%;
@@ -73,7 +84,7 @@ hr {
 #main-title {
   height: 47%;
   display: flex;
-  padding: 6% 1%;
+  padding: min(5%, 5dvh) 1%;
   flex-direction: column;
 }
 
@@ -106,11 +117,11 @@ hr {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(3, 1fr);
-  gap: 2%;
+  gap: min(2dvh, 1dvw);
 }
 
 #main-buttons button {
-  padding: 1%;
+  padding: min(4%, 1dvh);
   background-color: rgba(210, 210, 210, 0.28);
   border-radius: min(3rem, 2dvh);
   display: flex;
@@ -125,7 +136,7 @@ hr {
 }
 
 #main-buttons button img {
-  height: max(22.5%, 2dvw);
+  height: max(25%, 2dvw);
 }
 
 #routes-button {
@@ -138,4 +149,238 @@ hr {
     rgba(112, 157, 207, 0.5),
     #fff 40%
   );
+}
+
+footer {
+  height: 50dvh;
+  background-color: #282828;
+  padding: min(6%, 3dvh) 1%;
+  display: grid;
+  grid-template-rows: auto auto;
+  align-items: center;
+}
+
+footer a {
+  display: block;
+}
+
+#footer-info {
+  font-size: min(2rem, 2dvh);
+  color: #878787;
+}
+
+#footer-info p {
+  text-align: center;
+}
+
+#footer-about {
+  width: 100%;
+  display: grid;
+  grid-template-rows: repeat(3, auto);
+  gap: min(2%, 1dvh);
+  color: #fff;
+}
+
+.footer-info-block p {
+  text-align: center;
+  font-size: min(2.25rem, 2.25dvh);
+}
+
+.footer-info-block {
+  display: grid;
+  grid-template-rows: auto auto;
+  justify-content: center;
+  gap: min(10%, 1dvh);
+}
+
+.footer-info-block,
+#footer-about address {
+  padding: min(2%, 1dvh);
+}
+
+.as-link {
+  color: #3e8de9;
+  font-size: min(1.75rem, 1.75dvh);
+}
+
+#about-section,
+#payment-info-section,
+#jobs-section {
+  justify-content: space-between;
+}
+
+section h1 {
+  font-size: 5rem;
+}
+
+section p,
+section li,
+section button,
+section div {
+  font-size: min(2.5rem, 2.5dvh);
+  color: #323232;
+}
+
+#about-text {
+  display: grid;
+  grid-template-rows: repeat(2, auto);
+  gap: 2dvh;
+}
+
+#about-info {
+  display: grid;
+  grid-template-rows: repeat(3, auto);
+  gap: 2dvh;
+}
+
+#about-info button,
+fieldset button {
+  padding: min(5%, 1.25dvh) min(4%, 1dvh);
+  background-color: #3e8de9;
+  border-radius: min(1.5rem, 1dvh);
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4%;
+}
+
+#about-info button img,
+fieldset button img {
+  height: min(1.75rem, 1.75dvh);
+}
+
+ul {
+  list-style-position: inside;
+  padding-inline-start: min(4%, 1dvh);
+}
+
+#about-gallery {
+  border-radius: min(3rem, 2dvh);
+  position: relative;
+  overflow: hidden;
+}
+
+#about-gallery-carousel {
+  position: absolute;
+  width: fit-content;
+}
+
+#payment-info-section,
+#jobs-section {
+  min-height: 91dvh;
+  height: auto;
+}
+
+#payment-info {
+  display: grid;
+  grid-template-rows: repeat(3, auto);
+  gap: 2dvh;
+}
+
+.tabs-container {
+  display: grid;
+  grid-template-rows: repeat(5, auto);
+  gap: max(0.5dvh, 0.5dvw);
+}
+
+.tab {
+  background-color: #ccdcee;
+  border-radius: min(1.75rem, 1.75dvh);
+  position: relative;
+  transition: background-color 0.5s ease-in-out;
+}
+
+.tab:first-child {
+  border-radius: min(3rem, 2dvh) min(3rem, 2dvh) min(1.75rem, 1.75dvh)
+    min(1.75rem, 1.75dvh);
+}
+
+.tab:last-child {
+  border-radius: min(1.75rem, 1.75dvh) min(1.75rem, 1.75dvh) min(3rem, 2dvh)
+    min(3rem, 2dvh);
+}
+
+.tab-button {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: min(5%, 2.5dvh) min(6%, 4dvh);
+}
+
+.tab-button img {
+  width: min(5%, 5dvh);
+  transition: transform 0.5s ease-in-out;
+}
+
+.tab-button p {
+  text-align: center;
+}
+
+.tab-text {
+  padding-inline: min(6%, 4dvh);
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease-in-out;
+}
+
+.tab.active {
+  background-color: #6189b8;
+}
+
+.tab.active button p,
+.tab.active p {
+  color: #fff;
+}
+
+.tab.active button p {
+  font-weight: 600;
+}
+
+.tab.active img {
+  transform: rotate(180deg);
+}
+
+#request-section {
+  min-height: 91dvh;
+  height: auto;
+}
+
+form,
+fieldset {
+  height: 100%;
+}
+
+fieldset {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  border-color: #3e8de9;
+  border-style: solid;
+  border-width: max(3px, 0.25dvh);
+  border-radius: min(3rem, 2dvh);
+  padding: min(2%, 1dvh) min(4%, 2dvh);
+  gap: min(2dvh, 1dvw);
+}
+
+.input-field {
+  display: grid;
+  grid-template-rows: repeat(2, auto);
+  gap: min(1dvh, 0.5dvw);
+}
+
+.input-field label {
+  font-size: min(2.5rem, 2.5dvh);
+}
+
+.input-field input,
+textarea {
+  background-color: #d8e6f5;
+  border-width: 0;
+  border-radius: min(3rem, 2dvh);
+  min-height: 5.5dvh;
+  width: 100%;
+  font-size: 100%;
+  padding: min(4%, 2dvh);
 }
