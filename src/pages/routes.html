@@ -4,29 +4,92 @@
   <head>
     <meta charset="utf-8" />
     <title></title>
-    <link rel="stylesheet" href="./assets/styles/style.css" />
+    <link rel="stylesheet" href="../assets/styles/style.css" />
   </head>
   <body>
     <header>
       <nav>
-        <div class="nav-button"></div>
-        <a href="./index.html" class="logo">
+        <button class="nav-button">
+          <img src="../assets/icons/back.svg" alt="Назад" />
+        </button>
+        <a href="../index.html" class="logo">
           <img
             class="logo"
-            src="./assets/icons/logo-light.svg"
+            src="../assets/icons/logo-light.svg"
             alt="Логотип МУП ЭЭТ"
           />
         </a>
         <button class="nav-button" id="dark-mode-button">
           <img
             id="dark-mode-icon"
-            src="./assets/icons/darkmode.svg"
-            alt="Темная тема"
+            src="../assets/icons/darkmode.svg"
+            alt="Сменить тему"
           />
         </button>
       </nav>
     </header>
-    <main></main>
-    <footer></footer>
+    <main>
+      <section class="screen-info main-section no-padding justify">
+        <div></div>
+        <div id="routes-tabs-wrapper">
+          <div class="tabs-container">
+            <button class="routes-tab">
+              <div class="routes-tab-route">
+                <div class="routes-tab-number">1 2</div>
+                <div class="routes-tab-status">
+                  <p>Работает</p>
+                </div>
+              </div>
+              <img src="../assets/icons/more.svg" alt="Подробнее" />
+            </button>
+            <button class="routes-tab">
+              <div class="routes-tab-route">
+                <div class="routes-tab-number">1 2</div>
+                <div class="routes-tab-status">
+                  <p>Работает</p>
+                </div>
+              </div>
+              <img src="../assets/icons/more.svg" alt="Подробнее" />
+            </button>
+            <button class="routes-tab">
+              <div class="routes-tab-route">
+                <div class="routes-tab-number">1 2</div>
+                <div class="routes-tab-status">
+                  <p>Работает</p>
+                </div>
+              </div>
+              <img src="../assets/icons/more.svg" alt="Подробнее" />
+            </button>
+          </div>
+        </div>
+
+        <div id="routes-buttons">
+          <button>
+            <img src="../assets/icons/max-logo.svg" alt="Маршруты" />
+            <p>Отслеживать в <b>МАХ</b></p>
+          </button>
+          <button>
+            <img src="../assets/icons/phone.svg" alt="Маршруты" />
+            <p>Диспетчер</p>
+          </button>
+          <button>
+            <img src="../assets/icons/site.svg" alt="Маршруты" />
+            <p>Сайт</p>
+          </button>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <div id="footer-about">
+        <div class="footer-info-block">
+          <p>Политики сайта:</p>
+          <a href="">Политика обработки данных</a>
+        </div>
+      </div>
+      <div id="footer-info">
+        <p>Разработано студентами СГТУ им. Гагарина</p>
+        <p>© МУП “ЭнгельсЭлектроТранс” 2026 год</p>
+      </div>
+    </footer>
   </body>
 </html>

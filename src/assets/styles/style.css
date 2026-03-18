@@ -16,6 +16,10 @@
   padding: 0;
 }
 
+section.no-padding {
+  padding: 0;
+}
+
 button {
   border: none;
   background: none;
@@ -50,7 +54,7 @@ nav {
 }
 
 .nav-button {
-  width: min(5%, 2.5dvh);
+  width: min(6%, 2.75dvh);
 }
 
 .nav-button img {
@@ -77,57 +81,83 @@ hr {
   display: flex;
   flex-direction: column;
   gap: min(4%, 2dvh);
-  height: 91dvh;
   padding: min(6%, 6dvh);
 }
 
 #main-title {
-  height: 47%;
   display: flex;
-  padding: min(5%, 5dvh) 1%;
   flex-direction: column;
-}
-
-#main-title p,
-#main-title h1 {
-  text-align: end;
+  align-items: end;
+  padding: min(5%, 5dvh) 1%;
 }
 
 #main-title p {
-  font-size: 3rem;
+  font-size: min(3rem, 2.5dvh);
   font-weight: 300;
 }
 
 #main-title h1 {
-  font-size: 4rem;
+  font-size: min(4rem, 3dvh);
   font-weight: 800;
   color: #3e8de9;
 }
 
 #main-title-background {
+  width: 100%;
   max-height: 46.5%;
 }
 
 #main-title-delimiter {
-  max-height: 13.75%;
+  width: 100%;
+  max-height: 20%;
 }
 
 #main-buttons {
-  height: 53%;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(3, 1fr);
   gap: min(2dvh, 1dvw);
 }
 
-#main-buttons button {
+#routes-buttons {
+  padding: min(7%, 7dvw);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto 1fr;
+  gap: min(2dvw, 2dvh);
+}
+
+#routes-buttons button {
+  padding: min(2%, 1dvh);
+  height: min(13.5dvh, 28.5dvw);
+}
+
+#routes-buttons button:first-child {
+  background-image: linear-gradient(to right, #5eb2ef, #8942f0);
+  padding-block: min(4%, 2dvh);
+  flex-direction: row;
+  grid-column: span 2;
+  height: auto;
+}
+
+#routes-buttons button:first-child p {
+  color: #fff;
+}
+
+#routes-buttons button:first-child img {
+  height: max(77.7%, 2dvw);
+}
+
+#main-buttons button,
+#routes-buttons button {
   padding: min(4%, 1dvh);
   background-color: rgba(210, 210, 210, 0.28);
   border-radius: min(3rem, 2dvh);
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 5%;
+  align-items: center;
+  gap: min(2dvw, 2dvh);
   color: #3f3f3f;
 }
 
@@ -136,14 +166,24 @@ hr {
 }
 
 #main-buttons button img {
-  height: max(25%, 2dvw);
+  height: max(25%, 7dvw);
+}
+
+#routes-buttons button img {
+  height: max(20%, 2dvw);
 }
 
 #routes-button {
   grid-column: span 2;
 }
 
+main section:first-child {
+  height: 91dvh;
+}
+
 #main-section {
+  display: grid;
+  grid-template-rows: 56% auto;
   background-image: radial-gradient(
     circle at 125% 35%,
     rgba(112, 157, 207, 0.5),
@@ -152,12 +192,11 @@ hr {
 }
 
 footer {
-  height: 50dvh;
   background-color: #282828;
   padding: min(6%, 3dvh) 1%;
-  display: grid;
-  grid-template-rows: auto auto;
-  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: min(2dvw, 1dvh);
 }
 
 footer a {
@@ -167,6 +206,7 @@ footer a {
 #footer-info {
   font-size: min(2rem, 2dvh);
   color: #878787;
+  padding-block: min(2dvw, 1dvh);
 }
 
 #footer-info p {
@@ -175,9 +215,9 @@ footer a {
 
 #footer-about {
   width: 100%;
-  display: grid;
-  grid-template-rows: repeat(3, auto);
-  gap: min(2%, 1dvh);
+  display: flex;
+  flex-direction: column;
+  gap: min(2dvw, 1dvh);
   color: #fff;
 }
 
@@ -187,14 +227,10 @@ footer a {
 }
 
 .footer-info-block {
-  display: grid;
-  grid-template-rows: auto auto;
-  justify-content: center;
-  gap: min(10%, 1dvh);
-}
-
-.footer-info-block,
-#footer-about address {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: min(2%, 1dvh);
   padding: min(2%, 1dvh);
 }
 
@@ -210,7 +246,7 @@ footer a {
 }
 
 section h1 {
-  font-size: 5rem;
+  font-size: min(5rem, 4.5dvh);
 }
 
 section p,
@@ -267,9 +303,9 @@ ul {
 }
 
 #payment-info-section,
+#about-section,
 #jobs-section {
-  min-height: 91dvh;
-  height: auto;
+  min-height: 90dvh;
 }
 
 #payment-info {
@@ -279,9 +315,59 @@ ul {
 }
 
 .tabs-container {
-  display: grid;
-  grid-template-rows: repeat(5, auto);
+  display: flex;
+  flex-direction: column;
   gap: max(0.5dvh, 0.5dvw);
+}
+
+#routes-tabs-wrapper {
+  padding: min(7.5%, 7.5dvh);
+}
+
+.routes-tab {
+  border-style: solid;
+  border-color: rgba(238, 16, 16, 0.5);
+  border-width: max(2px, 0.2dvh);
+  border-radius: min(6.5dvw, 3dvh);
+  background-color: rgba(238, 16, 16, 0.05);
+  padding: min(4%, 2dvh);
+  display: flex;
+  justify-content: space-between;
+  gap: 3.8dvw;
+  height: min(26dvw, 13dvh);
+}
+
+.routes-tab-route {
+  display: flex;
+  gap: min(3.8dvw, 1.8dvh);
+}
+
+.routes-tab-number {
+  padding: min(3.5dvw, 1.5dvh);
+  width: min(26.7dvw, 12.7dvh);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(249, 68, 86, 0.2);
+  border-radius: min(6.5dvw, 3dvh);
+}
+
+.routes-tab-status {
+  display: flex;
+  align-items: center;
+}
+
+.routes-tab-status p {
+  color: #000;
+  font-size: min(3.5rem, 3dvh);
+}
+
+.routes-tab img {
+  width: min(8%, 3dvh);
+}
+
+.inactive {
+  opacity: 0.6;
 }
 
 .tab {
@@ -306,7 +392,7 @@ ul {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: min(5%, 2.5dvh) min(6%, 4dvh);
+  padding: min(6%, 3dvh);
 }
 
 .tab-button img {
@@ -323,6 +409,8 @@ ul {
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.5s ease-in-out;
+  font-weight: 200;
+  font-size: min(2rem, 2dvh);
 }
 
 .tab.active {
@@ -343,13 +431,7 @@ ul {
 }
 
 #request-section {
-  min-height: 91dvh;
-  height: auto;
-}
-
-form,
-fieldset {
-  height: 100%;
+  min-height: 113dvh;
 }
 
 fieldset {
@@ -371,7 +453,8 @@ fieldset {
 }
 
 .input-field label {
-  font-size: min(2.5rem, 2.5dvh);
+  font-size: min(2rem, 2dvh);
+  color: #555555;
 }
 
 .input-field input,
@@ -383,4 +466,8 @@ textarea {
   width: 100%;
   font-size: 100%;
   padding: min(4%, 2dvh);
+}
+
+.justify {
+  justify-content: space-between;
 }
