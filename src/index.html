@@ -91,20 +91,7 @@
             <img src="./assets/icons/right-arrow.svg" alt="" />
           </button>
         </div>
-        <div id="about-gallery">
-          <div id="about-gallery-carousel">
-            <img src="./assets/images/example.png" alt="" /><img
-              src="./assets/images/example.png"
-              alt=""
-            /><img src="./assets/images/example.png" alt="" /><img
-              src="./assets/images/example.png"
-              alt=""
-            /><img src="./assets/images/example.png" alt="" /><img
-              src="./assets/images/example.png"
-              alt=""
-            />
-          </div>
-        </div>
+        <div id="about-gallery"></div>
       </section>
       <hr />
       <section class="screen-info" id="payment-info-section">
@@ -160,8 +147,10 @@
       </section>
       <hr />
       <section class="screen-info" id="jobs-section">
-        <h1>Вакансии</h1>
-        <p>Телефон отдела кадров: <a href="tel:556407">55-64-07</a></p>
+        <div id="jobs-info">
+          <h1>Вакансии</h1>
+          <p>Телефон отдела кадров: <a href="tel:556407">55-64-07</a></p>
+        </div>
         <div class="tabs-container">
           <div class="tab">
             <button class="tab-button">
@@ -218,19 +207,22 @@
             <p class="tab-text"></p>
           </div>
         </div>
+        <div></div>
       </section>
       <hr />
       <section class="screen-info" id="request-section">
         <h1>Обращение</h1>
         <form action="">
           <fieldset>
-            <div class="input-field">
-              <label for="request-name">ФИО</label>
+            <div class="input-block">
+              <label for="request-name" class="required">ФИО</label>
               <input type="text" id="request-name" />
             </div>
 
-            <div class="input-field">
-              <label for="request-phone">Телефон обратной связи</label>
+            <div class="input-block">
+              <label for="request-phone" class="required"
+                >Телефон обратной связи</label
+              >
               <input
                 type="text"
                 id="request-phone"
@@ -238,35 +230,38 @@
               />
             </div>
 
-            <div class="input-field">
-              <label for="request-type">Вид обращения</label>
+            <div class="input-block">
+              <label for="request-type" class="required">Вид обращения</label>
               <input type="text" id="request-type" />
             </div>
 
-            <div class="input-field">
+            <div class="input-block">
               <label for="request-datetime">Дата и время</label>
               <input type="text" id="request-datetime" />
             </div>
 
-            <div class="input-field">
+            <div class="input-block">
               <label for="request-number">Бортовой номер (4 цифры)</label>
               <input type="text" id="request-number" />
             </div>
 
-            <div class="input-field">
-              <label for="request-subject">Тема обращения</label>
+            <div class="input-block">
+              <label for="request-subject" class="required"
+                >Тема обращения</label
+              >
               <input type="text" id="request-subject" />
             </div>
 
-            <div class="input-field">
-              <label for="request-text">Текст обращения</label>
+            <div class="input-block">
+              <label for="request-text" class="required">Текст обращения</label>
               <textarea name="" id="request-text"></textarea>
             </div>
-
-            <button>
-              Отправить
-              <img src="./assets/icons/right-arrow.svg" alt="" />
-            </button>
+            <div class="input-block">
+              <button>
+                Отправить
+                <img src="./assets/icons/right-arrow.svg" alt="" />
+              </button>
+            </div>
           </fieldset>
         </form>
       </section>
@@ -306,6 +301,23 @@
       </div>
     </footer>
 
-    <script src="./assets/scripts/indexScript.js"></script>
+    <!--Opening info tabs-->
+    <script>
+      const tabButtons = document.querySelectorAll(".tab button");
+
+      tabButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          if (button.parentElement.classList.contains("active")) {
+            button.nextElementSibling.style.maxHeight = `0px`;
+            button.nextElementSibling.style.paddingBlock = `0px`;
+          } else {
+            button.nextElementSibling.style.paddingBlock = `min(2.5dvw, 1dvh)`;
+            button.nextElementSibling.style.maxHeight = `calc(${button.nextElementSibling.scrollHeight}px + 2*min(2.5dvw, 1dvh))`;
+          }
+
+          button.parentElement.classList.toggle("active");
+        });
+      });
+    </script>
   </body>
 </html>

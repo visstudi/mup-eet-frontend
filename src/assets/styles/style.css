@@ -433,6 +433,14 @@ footer a {
   justify-content: space-between;
 }
 
+#about-section {
+  background-image: radial-gradient(
+    circle at 5% 40%,
+    rgba(112, 157, 207, 0.3),
+    #fff 60%
+  );
+}
+
 section h1 {
   font-size: min(5rem, 4.5dvh);
 }
@@ -496,9 +504,10 @@ ul {
   min-height: 90dvh;
 }
 
-#payment-info {
-  display: grid;
-  grid-template-rows: repeat(3, auto);
+#payment-info,
+#jobs-info {
+  display: flex;
+  flex-direction: column;
   gap: 2dvh;
 }
 
@@ -570,6 +579,7 @@ ul {
   border-radius: min(1.75rem, 1.75dvh);
   position: relative;
   transition: background-color 0.5s ease-in-out;
+  padding: min(2.5dvw, 1dvh) min(5dvw, 2.5dvh);
 }
 
 .tab:first-child {
@@ -587,7 +597,7 @@ ul {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: min(6%, 3dvh);
+  padding-block: min(2.75dvw, 1.25dvh);
 }
 
 .tab-button img {
@@ -603,7 +613,9 @@ ul {
   padding-inline: min(6%, 4dvh);
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.5s ease-in-out;
+  transition:
+    max-height 0.5s ease-in-out,
+    padding-block 0.5s ease-in-out;
   font-weight: 200;
   font-size: min(2rem, 2dvh);
 }
@@ -625,10 +637,6 @@ ul {
   transform: rotate(180deg);
 }
 
-#request-section {
-  min-height: 113dvh;
-}
-
 fieldset {
   display: flex;
   flex-direction: column;
@@ -637,22 +645,29 @@ fieldset {
   border-style: solid;
   border-width: max(3px, 0.25dvh);
   border-radius: min(3rem, 2dvh);
-  padding: min(2%, 1dvh) min(4%, 2dvh);
+  padding: min(4dvw, 2dvh) min(2dvw, 1dvh);
   gap: min(2dvh, 1dvw);
 }
 
-.input-field {
-  display: grid;
-  grid-template-rows: repeat(2, auto);
+.input-block {
+  display: flex;
+  flex-direction: column;
   gap: min(1dvh, 0.5dvw);
+  padding: min(2dvw, 1dvh);
 }
 
-.input-field label {
+.input-block label {
+  padding-inline-start: 1rem;
   font-size: min(2rem, 2dvh);
   color: #555555;
 }
 
-.input-field input,
+.required::after {
+  content: "*";
+  color: #ff0000;
+}
+
+.input-block input,
 textarea {
   background-color: #d8e6f5;
   border-width: 0;
@@ -661,6 +676,10 @@ textarea {
   width: 100%;
   font-size: 100%;
   padding: min(4%, 2dvh);
+}
+
+textarea {
+  min-height: min(35dvw, 16.5dvh);
 }
 
 .justify {
