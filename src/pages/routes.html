@@ -1,6 +1,6 @@
 <!doctype html>
 
-<html lang="ru">
+<html lang="ru" theme="light">
   <head>
     <meta charset="utf-8" />
     <title></title>
@@ -9,7 +9,7 @@
   <body>
     <header>
       <nav>
-        <button class="nav-button">
+        <button class="nav-button" onclick="location.href = '../index.html'">
           <img src="../assets/icons/back.svg" alt="Назад" />
         </button>
         <a href="../index.html" class="logo">
@@ -64,16 +64,16 @@
         </div>
 
         <div id="routes-buttons">
-          <button>
-            <img src="../assets/icons/max-logo.svg" alt="Маршруты" />
-            <p>Отслеживать в <b>МАХ</b></p>
+          <button onclick="">
+            <img src="../assets/icons/max-logo.svg" alt="Отслеживать в МАХ" />
+            <p><b>Отслеживать в МАХ</b></p>
           </button>
-          <button>
-            <img src="../assets/icons/phone.svg" alt="Маршруты" />
+          <button onclick="location.href = 'tel:+79999999999'">
+            <img src="../assets/icons/phone.svg" alt="Диспетчер" />
             <p>Диспетчер</p>
           </button>
-          <button>
-            <img src="../assets/icons/site.svg" alt="Маршруты" />
+          <button onclick="location.href = '../index.html'">
+            <img src="../assets/icons/site.svg" alt="Сайт" />
             <p>Сайт</p>
           </button>
         </div>

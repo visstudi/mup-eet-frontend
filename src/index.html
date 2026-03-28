@@ -1,6 +1,6 @@
 <!doctype html>
 
-<html lang="ru">
+<html lang="ru" theme="light">
   <head>
     <meta charset="utf-8" />
     <title></title>
@@ -211,7 +211,7 @@
       </section>
       <hr />
       <section class="screen-info" id="request-section">
-        <h1>Обращение</h1>
+        <div><h1>Обращение</h1></div>
         <form action="">
           <fieldset>
             <div class="input-block">
@@ -256,6 +256,9 @@
               <label for="request-text" class="required">Текст обращения</label>
               <textarea name="" id="request-text"></textarea>
             </div>
+
+            <div class="g-recaptcha"></div>
+
             <div class="input-block">
               <button>
                 Отправить
@@ -303,10 +306,16 @@
 
     <!--Opening info tabs-->
     <script>
+      function autoResize(element) {
+        element.style.height = "auto";
+        element.style.height = `${element.scrollHeight}px`;
+      }
+
       const tabButtons = document.querySelectorAll(".tab button");
+      const textarea = document.getElementsByTagName("textarea")[0];
 
       tabButtons.forEach((button) => {
-        button.addEventListener("click", () => {
+        button.addEventListener("click", function () {
           if (button.parentElement.classList.contains("active")) {
             button.nextElementSibling.style.maxHeight = `0px`;
             button.nextElementSibling.style.paddingBlock = `0px`;
@@ -317,6 +326,10 @@
 
           button.parentElement.classList.toggle("active");
         });
+      });
+
+      textarea.addEventListener("input", function () {
+        autoResize(this);
       });
     </script>
   </body>

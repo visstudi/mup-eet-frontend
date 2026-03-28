@@ -6,7 +6,12 @@
   font-display: fallback;
 }
 
-:root {
+@font-face {
+  font-family: "Eet Route";
+  src: url("../fonts/eet_route.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: fallback;
 }
 
 * {
@@ -14,6 +19,32 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+[theme="light"] {
+  --background-color: #fff;
+  --main-text-color: #323232;
+  --buttons-text-color: #fff;
+  --tab-backround-color: #ccdcee;
+  --active-tab-text-color: #fff;
+  --input-background-color: #d8e6f5;
+  --footer-background-color: #282828;
+  --label-text-color: #555555;
+}
+
+[theme="dark"] {
+  --background-color: #252525;
+  --main-text-color: #fff;
+  --buttons-text-color: #252525;
+  --tab-backround-color: #424e5c;
+  --active-tab-text-color: #252525;
+  --input-background-color: #4c5866;
+  --footer-background-color: #000;
+  --label-text-color: #d0d0d0;
+}
+
+body {
+  background-color: var(--background-color);
 }
 
 section.no-padding {
@@ -37,8 +68,12 @@ address {
 }
 
 header {
+  position: sticky;
+  top: 0;
+  z-index: 1;
   height: min(9dvh, 19dvw);
   width: 100%;
+  background-color: var(--background-color);
 }
 
 nav {
@@ -70,10 +105,6 @@ main {
 
 hr {
   border: none;
-  background-image: url("../images/divider.svg");
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center center;
   height: min(3.25dvh, 4.5rem);
 }
 
@@ -151,7 +182,7 @@ hr {
 #main-buttons button,
 #routes-buttons button {
   padding: min(4%, 1dvh);
-  background-color: rgba(210, 210, 210, 0.28);
+  background-color: rgb(210 210 210 / 0.28);
   border-radius: min(3rem, 2dvh);
   display: flex;
   flex-direction: column;
@@ -186,14 +217,14 @@ main section:first-child {
   grid-template-rows: 56% auto;
   background-image: radial-gradient(
     circle at 125% 35%,
-    rgba(112, 157, 207, 0.5),
-    #fff 40%
+    rgb(112 157 207 / 0.5),
+    var(--background-color) 40%
   );
 }
 
 #route-main-section {
-  --section-main-color: #a7aa0f;
-  --section-secondary-color: #f2f3c8;
+  --section-accent-color: 211 216 0;
+  --section-secondary-color: rgb(var(--section-accent-color) / 0.2);
 
   padding: min(7dvw, 3dvh) min(4.5dvw, 2dvh);
   display: flex;
@@ -211,9 +242,9 @@ main section:first-child {
 }
 
 #route-about .routes-tab-number {
-  color: var(--section-main-color);
+  color: rgb(var(--section-accent-color));
   background-color: var(--section-secondary-color);
-  border-color: var(--section-main-color);
+  border-color: rgb(var(--section-accent-color));
   border-width: min(0.5dvw, 0.25dvh);
   border-style: solid;
 }
@@ -264,27 +295,26 @@ main section:first-child {
 }
 
 #price-frame {
-  display: grid;
-  grid-template-columns: auto auto;
-  gap: min(0.5dvw, 0.25dvh);
+  display: flex;
   width: 100%;
-  background-color: var(--section-main-color);
-  border-color: var(--section-main-color);
+  background-color: var(--section-secondary-color);
+  border-color: rgb(var(--section-accent-color));
   border-width: min(0.5dvw, 0.25dvh);
   border-style: solid;
   border-radius: min(5.5dvw, 3dvh);
 }
 
 .price {
+  flex: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: min(3.5dvw, 1.5dvh) min(2dvw, 1dvh);
-  background-color: var(--section-secondary-color);
 }
 
 .price:first-child {
   border-radius: min(5.5dvw, 3dvh) 0 0 min(5.5dvw, 3dvh);
+  border-right: rgb(var(--section-accent-color)) min(0.5dvw, 0.25dvh) solid;
 }
 
 .price:last-child {
@@ -293,7 +323,7 @@ main section:first-child {
 
 .price p,
 #route-price a {
-  color: var(--section-main-color);
+  color: rgb(var(--section-accent-color));
 }
 
 #route-price a {
@@ -316,14 +346,14 @@ main section:first-child {
 
 table {
   border-spacing: 0;
-  color: var(--section-main-color);
+  color: rgb(var(--section-accent-color));
 }
 
 th,
 td {
   background-color: var(--section-secondary-color);
   border-style: solid;
-  border-color: var(--section-main-color);
+  border-color: rgb(var(--section-accent-color));
   border-width: min(0.5dvw, 0.25dvh);
 }
 
@@ -359,7 +389,7 @@ tr td {
 }
 
 tr.active td {
-  background-color: var(--section-main-color);
+  background-color: rgb(var(--section-accent-color));
   color: var(--section-secondary-color);
 }
 
@@ -380,7 +410,7 @@ tbody tr:last-child td:last-child {
 }
 
 footer {
-  background-color: #282828;
+  background-color: var(--footer-background-color);
   padding: min(6%, 3dvh) 1%;
   display: flex;
   flex-direction: column;
@@ -436,8 +466,8 @@ footer a {
 #about-section {
   background-image: radial-gradient(
     circle at 5% 40%,
-    rgba(112, 157, 207, 0.3),
-    #fff 60%
+    rgb(112 157 207 / 0.3),
+    var(--background-color) 60%
   );
 }
 
@@ -450,7 +480,7 @@ section li,
 section button,
 section div {
   font-size: min(2.5rem, 2.5dvh);
-  color: #323232;
+  color: var(--main-text-color);
 }
 
 #about-text {
@@ -470,7 +500,7 @@ fieldset button {
   padding: min(5%, 1.25dvh) min(4%, 1dvh);
   background-color: #3e8de9;
   border-radius: min(1.5rem, 1dvh);
-  color: #fff;
+  color: var(--buttons-text-color);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -527,10 +557,10 @@ ul {
   --tab-number-background-color: 249, 68, 86;
 
   border-style: solid;
-  border-color: rgba(var(--tab-fill-color), 0.5);
+  border-color: rgb(var(--tab-fill-color) / 0.5);
   border-width: max(2px, 0.2dvh);
   border-radius: min(6.5dvw, 3dvh);
-  background-color: rgba(var(--tab-fill-color), 0.05);
+  background-color: rgb(var(--tab-fill-color) / 0.05);
   padding: min(4%, 2dvh);
   display: flex;
   justify-content: space-between;
@@ -549,9 +579,11 @@ ul {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(var(--tab-number-background-color), 0.2);
+  background-color: rgb(var(--tab-number-background-color) / 0.2);
   color: rgb(var(--tab-number-text-color));
   border-radius: min(6.5dvw, 3dvh);
+  font-family: "Eet Route", "Arial", sans-serif;
+  letter-spacing: 10%;
   font-size: min(9.5dvw, 4.5dvh);
   font-weight: 700;
 }
@@ -575,7 +607,7 @@ ul {
 }
 
 .tab {
-  background-color: #ccdcee;
+  background-color: var(--tab-backround-color);
   border-radius: min(1.75rem, 1.75dvh);
   position: relative;
   transition: background-color 0.5s ease-in-out;
@@ -626,7 +658,7 @@ ul {
 
 .tab.active button p,
 .tab.active p {
-  color: #fff;
+  color: var(--active-tab-text-color);
 }
 
 .tab.active button p {
@@ -659,7 +691,7 @@ fieldset {
 .input-block label {
   padding-inline-start: 1rem;
   font-size: min(2rem, 2dvh);
-  color: #555555;
+  color: var(--label-text-color);
 }
 
 .required::after {
@@ -669,7 +701,7 @@ fieldset {
 
 .input-block input,
 textarea {
-  background-color: #d8e6f5;
+  background-color: var(--input-background-color);
   border-width: 0;
   border-radius: min(3rem, 2dvh);
   min-height: 5.5dvh;
@@ -689,7 +721,7 @@ textarea {
 iframe {
   width: 100%;
   height: min(60dvw, 28.5dvh);
-  border: var(--section-main-color);
+  border: rgb(var(--section-accent-color));
   border-width: min(0.6dvw, 0.3dvh);
   border-style: solid;
   border-radius: min(5.5dvw, 3dvh);
