@@ -9,7 +9,7 @@
   <body>
     <header>
       <nav>
-        <button class="nav-button">
+        <button class="nav-button" onclick="location = './routes.html'">
           <svg
             viewBox="0 0 23 23"
             fill="none"
@@ -22,7 +22,7 @@
             />
           </svg>
         </button>
-        <a href="../index.html" class="logo">
+        <a href="./index.html" class="logo">
           <img
             class="logo"
             src="../assets/icons/logo-light.svg"
@@ -32,7 +32,7 @@
         <button class="nav-button" id="dark-mode-button">
           <img
             id="dark-mode-icon"
-            src="../assets/icons/darkmode.svg"
+            src="../assets/icons/switch-mode-light.svg"
             alt="Сменить тему"
           />
         </button>
@@ -66,44 +66,46 @@
         </div>
         <div id="route-schedule">
           <p>Расписание</p>
-          <table>
-            <thead>
-              <tr>
-                <th>Время</th>
-                <th>Интервал</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>05:41 - 06:40</td>
-                <td>20 мин.</td>
-              </tr>
-              <tr>
-                <td>05:41 - 06:40</td>
-                <td>20 мин.</td>
-              </tr>
-              <tr>
-                <td>05:41 - 06:40</td>
-                <td>20 мин.</td>
-              </tr>
-              <tr class="active">
-                <td>05:41 - 06:40</td>
-                <td>20 мин.</td>
-              </tr>
-              <tr>
-                <td>05:41 - 06:40</td>
-                <td>20 мин.</td>
-              </tr>
-              <tr>
-                <td>05:41 - 06:40</td>
-                <td>20 мин.</td>
-              </tr>
-              <tr>
-                <td>05:41 - 06:40</td>
-                <td>20 мин.</td>
-              </tr>
-            </tbody>
-          </table>
+          <div id="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>Время</th>
+                  <th>Интервал</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>05:41 - 06:40</td>
+                  <td>20 мин.</td>
+                </tr>
+                <tr>
+                  <td>05:41 - 06:40</td>
+                  <td>20 мин.</td>
+                </tr>
+                <tr>
+                  <td>05:41 - 06:40</td>
+                  <td>20 мин.</td>
+                </tr>
+                <tr class="active">
+                  <td>05:41 - 06:40</td>
+                  <td>20 мин.</td>
+                </tr>
+                <tr>
+                  <td>05:41 - 06:40</td>
+                  <td>20 мин.</td>
+                </tr>
+                <tr>
+                  <td>05:41 - 06:40</td>
+                  <td>20 мин.</td>
+                </tr>
+                <tr>
+                  <td>05:41 - 06:40</td>
+                  <td>20 мин.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
         <div id="route-map">
           <p>Онлайн-карта</p>

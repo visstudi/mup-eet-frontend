@@ -10,7 +10,7 @@
     <header>
       <nav>
         <button class="nav-button" id="previous-button"></button>
-        <a href="../index.html" class="logo">
+        <a href="./index.html" class="logo">
           <img
             class="logo"
             src="../assets/icons/logo-light.svg"
@@ -20,7 +20,7 @@
         <button class="nav-button" id="dark-mode-button">
           <img
             id="dark-mode-icon"
-            src="../assets/icons/darkmode.svg"
+            src="../assets/icons/switch-mode-light.svg"
             alt="Темная тема"
           />
         </button>
@@ -43,7 +43,7 @@
           />
         </div>
         <div id="main-buttons">
-          <button id="routes-button">
+          <button id="routes-button" onclick="location = './routes.html'">
             <svg
               viewBox="0 0 31 31"
               fill="none"
@@ -154,7 +154,7 @@
               </ul>
             </div>
           </div>
-          <button>
+          <button onclick="location = './routes.html'">
             К маршрутам
             <svg
               viewBox="0 0 16 12"
@@ -172,7 +172,7 @@
         <div id="about-gallery"></div>
       </section>
       <hr />
-      <section class="screen-info" id="payment-info-section">
+      <section class="screen-info" id="payment-section">
         <div id="payment-info">
           <h1>Оплата проезда</h1>
           <p>
@@ -462,7 +462,7 @@
             <div class="g-recaptcha"></div>
 
             <div class="input-block">
-              <button>
+              <button id="send-request-button">
                 Отправить
                 <svg
                   viewBox="0 0 16 12"
@@ -523,10 +523,7 @@
         element.style.height = `${element.scrollHeight}px`;
       }
 
-      const tabButtons = document.querySelectorAll(".tab button");
-      const textarea = document.getElementsByTagName("textarea")[0];
-
-      tabButtons.forEach((button) => {
+      document.querySelectorAll(".tab button").forEach((button) => {
         button.addEventListener("click", function () {
           if (button.parentElement.classList.contains("active")) {
             button.nextElementSibling.style.maxHeight = `0px`;
@@ -540,9 +537,21 @@
         });
       });
 
-      textarea.addEventListener("input", function () {
-        autoResize(this);
+      ["about", "payment", "jobs", "request"].forEach((sectionName) => {
+        document
+          .getElementById(sectionName + "-button")
+          .addEventListener("click", (event) => {
+            document
+              .getElementById(sectionName + "-section")
+              .scrollIntoView({ behavior: "smooth" });
+          });
       });
+
+      document
+        .getElementsByTagName("textarea")[0]
+        .addEventListener("input", function () {
+          autoResize(this);
+        });
     </script>
 
     <!--Switching themes-->

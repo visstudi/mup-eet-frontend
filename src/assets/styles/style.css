@@ -55,6 +55,10 @@ body {
   background-color: var(--background-color);
 }
 
+section:not(:first-child) {
+  scroll-margin-top: min(9dvh, 19dvw);
+}
+
 section.no-padding {
   padding: 0;
 }
@@ -350,14 +354,20 @@ main section:first-child {
   font-weight: 800;
 }
 
+#table-wrapper {
+  width: 100%;
+  background-color: var(--section-secondary-color);
+  border-radius: min(5.5dvw, 3dvh);
+}
+
 table {
+  border-collapse: separate;
   border-spacing: 0;
   color: rgb(var(--section-accent-color));
 }
 
 th,
 td {
-  background-color: var(--section-secondary-color);
   border-style: solid;
   border-color: rgb(var(--section-accent-color));
   border-width: min(0.5dvw, 0.25dvh);
@@ -396,7 +406,16 @@ tr td {
 
 tr.active td {
   background-color: rgb(var(--section-accent-color));
-  color: var(--section-secondary-color);
+}
+
+[theme="dark"] tr.active td {
+  color: #000;
+  mix-blend-mode: screen;
+}
+
+[theme="light"] tr.active td {
+  color: #fff;
+  mix-blend-mode: multiply;
 }
 
 thead tr th:first-child {
@@ -464,9 +483,10 @@ footer a {
 }
 
 #about-section,
-#payment-info-section,
+#payment-section,
 #jobs-section {
   justify-content: space-between;
+  min-height: 90dvh;
 }
 
 #about-section {
@@ -537,12 +557,6 @@ ul {
 #about-gallery-carousel {
   position: absolute;
   width: fit-content;
-}
-
-#payment-info-section,
-#about-section,
-#jobs-section {
-  min-height: 90dvh;
 }
 
 #payment-info,
