@@ -30,6 +30,10 @@
   --input-background-color: #d8e6f5;
   --footer-background-color: #282828;
   --label-text-color: #555555;
+  --main-icon-color: #3f3f3f;
+  --button-arrow-color: #fff;
+  --placeholder-text-color: rgb(0 0 0 / 0.5);
+  --tab-icon-color: #395576;
 }
 
 [theme="dark"] {
@@ -41,6 +45,10 @@
   --input-background-color: #4c5866;
   --footer-background-color: #000;
   --label-text-color: #d0d0d0;
+  --main-icon-color: #fff;
+  --button-arrow-color: #252525;
+  --placeholder-text-color: rgb(255 255 255 / 0.5);
+  --tab-icon-color: #0d233e;
 }
 
 body {
@@ -92,8 +100,13 @@ nav {
   width: min(6%, 2.75dvh);
 }
 
-.nav-button img {
+.nav-button img,
+.nav-button svg {
   width: 100%;
+}
+
+.nav-button svg path {
+  fill: var(--main-icon-color);
 }
 
 main {
@@ -196,12 +209,12 @@ hr {
   font-size: min(2rem, 2dvh);
 }
 
-#main-buttons button img {
-  height: max(25%, 7dvw);
+button svg {
+  height: min(3dvh, 7dvw);
 }
 
-#routes-buttons button img {
-  height: max(20%, 2dvw);
+button svg path {
+  fill: var(--main-icon-color);
 }
 
 #routes-button {
@@ -223,9 +236,10 @@ main section:first-child {
 }
 
 #route-main-section {
+  /* Set by API (element.style.setProperty("--section-accent-color", "<color>")) */
   --section-accent-color: 211 216 0;
-  --section-secondary-color: rgb(var(--section-accent-color) / 0.2);
 
+  --section-secondary-color: rgb(var(--section-accent-color) / 0.2);
   padding: min(7dvw, 3dvh) min(4.5dvw, 2dvh);
   display: flex;
   flex-direction: column;
@@ -241,14 +255,6 @@ main section:first-child {
   align-items: center;
 }
 
-#route-about .routes-tab-number {
-  color: rgb(var(--section-accent-color));
-  background-color: var(--section-secondary-color);
-  border-color: rgb(var(--section-accent-color));
-  border-width: min(0.5dvw, 0.25dvh);
-  border-style: solid;
-}
-
 #route-data {
   display: flex;
   flex-direction: column;
@@ -256,7 +262,7 @@ main section:first-child {
 }
 
 #route-data p:first-child {
-  color: #000;
+  color: var(--main-text-color);
   font-size: min(6dvw, 3dvh);
   font-weight: 700;
 }
@@ -281,7 +287,7 @@ main section:first-child {
 #route-schedule > p:first-child,
 #route-map > p:first-child {
   font-size: min(4.5dvw, 2dvh);
-  color: #000;
+  color: var(--main-text-color);
   font-weight: 500;
 }
 
@@ -507,9 +513,14 @@ fieldset button {
   gap: 4%;
 }
 
-#about-info button img,
-fieldset button img {
-  height: min(1.75rem, 1.75dvh);
+#about-info button svg,
+fieldset button svg {
+  width: min(5dvw, 2dvh);
+}
+
+#about-info button svg path,
+fieldset button svg path {
+  fill: var(--button-arrow-color);
 }
 
 ul {
@@ -552,19 +563,18 @@ ul {
 }
 
 .routes-tab {
-  --tab-fill-color: 238, 16, 16;
-  --tab-number-text-color: 196, 61, 75;
-  --tab-number-background-color: 249, 68, 86;
+  --section-accent-color: 196 61 75;
 
+  --section-secondary-color: rgb(var(--section-accent-color) / 0.2);
   border-style: solid;
-  border-color: rgb(var(--tab-fill-color) / 0.5);
+  border-color: rgb(var(--section-accent-color) / 0.5);
   border-width: max(2px, 0.2dvh);
   border-radius: min(6.5dvw, 3dvh);
-  background-color: rgb(var(--tab-fill-color) / 0.05);
+  background-color: rgb(var(--section-accent-color) / 0.05);
   padding: min(4%, 2dvh);
   display: flex;
   justify-content: space-between;
-  gap: 3.8dvw;
+  align-items: center;
   height: min(26dvw, 13dvh);
 }
 
@@ -579,8 +589,11 @@ ul {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgb(var(--tab-number-background-color) / 0.2);
-  color: rgb(var(--tab-number-text-color));
+  color: rgb(var(--section-accent-color));
+  background-color: var(--section-secondary-color);
+  border-color: rgb(var(--section-accent-color));
+  border-width: min(0.5dvw, 0.25dvh);
+  border-style: solid;
   border-radius: min(6.5dvw, 3dvh);
   font-family: "Eet Route", "Arial", sans-serif;
   letter-spacing: 10%;
@@ -594,11 +607,11 @@ ul {
 }
 
 .routes-tab-status p {
-  color: #000;
+  color: var(--main-text-color);
   font-size: min(3.5rem, 3dvh);
 }
 
-.routes-tab img {
+.routes-tab svg {
   width: min(8%, 3dvh);
 }
 
@@ -610,7 +623,7 @@ ul {
   background-color: var(--tab-backround-color);
   border-radius: min(1.75rem, 1.75dvh);
   position: relative;
-  transition: background-color 0.5s ease-in-out;
+  transition: background-color 0.25s ease-in-out;
   padding: min(2.5dvw, 1dvh) min(5dvw, 2.5dvh);
 }
 
@@ -632,9 +645,13 @@ ul {
   padding-block: min(2.75dvw, 1.25dvh);
 }
 
-.tab-button img {
+.tab-button svg {
   width: min(5%, 5dvh);
-  transition: transform 0.5s ease-in-out;
+  transition: transform 0.25s ease-in-out;
+}
+
+.tab-button svg path {
+  fill: var(--tab-icon-color);
 }
 
 .tab-button p {
@@ -646,8 +663,8 @@ ul {
   max-height: 0;
   overflow: hidden;
   transition:
-    max-height 0.5s ease-in-out,
-    padding-block 0.5s ease-in-out;
+    max-height 0.25s ease-in-out,
+    padding-block 0.25s ease-in-out;
   font-weight: 200;
   font-size: min(2rem, 2dvh);
 }
@@ -665,7 +682,7 @@ ul {
   font-weight: 600;
 }
 
-.tab.active img {
+.tab.active svg {
   transform: rotate(180deg);
 }
 
@@ -708,6 +725,10 @@ textarea {
   width: 100%;
   font-size: 100%;
   padding: min(4%, 2dvh);
+}
+
+input::placeholder {
+  color: var(--placeholder-text-color);
 }
 
 textarea {
