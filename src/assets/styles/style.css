@@ -83,7 +83,7 @@ header {
   position: sticky;
   top: 0;
   z-index: 1;
-  height: min(9dvh, 19dvw);
+  height: 9dvh;
   width: 100%;
   background-color: var(--background-color);
 }
@@ -226,10 +226,11 @@ button svg path {
 }
 
 main section:first-child {
-  height: 91dvh;
+  min-height: 91dvh;
 }
 
 #index-main-section {
+  height: 91dvh;
   display: grid;
   grid-template-rows: 56% auto;
   background-image: radial-gradient(
@@ -300,10 +301,6 @@ main section:first-child {
   color: #878787;
 }
 
-#route-schedule table {
-  width: 100%;
-}
-
 #price-frame {
   display: flex;
   width: 100%;
@@ -361,9 +358,11 @@ main section:first-child {
 }
 
 table {
+  width: 100%;
   border-collapse: separate;
   border-spacing: 0;
   color: rgb(var(--section-accent-color));
+  backface-visibility: hidden;
 }
 
 th,
@@ -410,12 +409,12 @@ tr.active td {
 
 [theme="dark"] tr.active td {
   color: #000;
-  mix-blend-mode: screen;
+  mix-blend-mode: lighten;
 }
 
 [theme="light"] tr.active td {
   color: #fff;
-  mix-blend-mode: multiply;
+  mix-blend-mode: darken;
 }
 
 thead tr th:first-child {
@@ -731,6 +730,7 @@ fieldset {
 }
 
 .input-block input,
+.dropdown-button,
 textarea {
   background-color: var(--input-background-color);
   border-width: 0;
@@ -738,7 +738,52 @@ textarea {
   min-height: 5.5dvh;
   width: 100%;
   font-size: 100%;
-  padding: min(4%, 2dvh);
+  padding: min(3dvw, 2dvh);
+}
+
+.dropdown {
+  position: relative;
+  height: 5.5dvh;
+}
+
+.dropdown-button {
+  position: absolute;
+  justify-content: space-between;
+  z-index: 1;
+}
+
+.dropdown > button > svg {
+  transition: transform 0.25s ease-in-out;
+}
+
+.dropdown.active > button > svg {
+  transform: rotate(180deg);
+}
+
+.dropdown-content {
+  overflow: hidden;
+  max-height: 0;
+  width: 100%;
+  position: absolute;
+  top: 2.75dvh;
+  left: 0;
+  transition: max-height 0.25s ease-in-out;
+}
+
+.dropdown-content > div {
+  background-color: var(--input-background-color);
+  min-height: 5.5dvh;
+  padding: min(3dvw, 2dvh);
+  display: flex;
+}
+
+.dropdown-content > div:first-child {
+  padding: 0;
+  min-height: 0;
+}
+
+.dropdown-content > div:last-child {
+  border-radius: 0 0 min(3rem, 2dvh) min(3rem, 2dvh);
 }
 
 input::placeholder {

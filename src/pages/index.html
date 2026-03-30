@@ -3,7 +3,7 @@
 <html lang="ru" theme="light">
   <head>
     <meta charset="utf-8" />
-    <title></title>
+    <title>МУП ЭнгельсЭлектроТранс</title>
     <link rel="stylesheet" href="../assets/styles/style.css" />
   </head>
   <body>
@@ -430,7 +430,29 @@
 
             <div class="input-block">
               <label for="request-type" class="required">Вид обращения</label>
-              <input type="text" id="request-type" />
+              <div class="dropdown">
+                <button class="dropdown-button">
+                  <p id="dropdown-choice">Жалоба</p>
+                  <svg
+                    viewBox="0 0 21 21"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M3.85436 7.40548C4.08889 7.13187 4.50081 7.10019 4.77442 7.33471L10.4398 12.1907L16.1051 7.33471C16.3787 7.10019 16.7907 7.13187 17.0252 7.40548C17.2597 7.67909 17.228 8.09102 16.9544 8.32554L10.8644 13.5455C10.6201 13.755 10.2595 13.755 10.0151 13.5455L3.92514 8.32554C3.65153 8.09102 3.61984 7.67909 3.85436 7.40548Z"
+                    />
+                  </svg>
+                </button>
+                <div class="dropdown-content">
+                  <div></div>
+                  <div>Жалоба</div>
+                  <div>Предложение</div>
+                  <div>Вакансия</div>
+                  <div>Другое</div>
+                </div>
+              </div>
             </div>
 
             <div class="input-block">
@@ -518,9 +540,24 @@
 
     <!--Opening info tabs-->
     <script>
+      const dropdownButton =
+        document.getElementsByClassName("dropdown-button")[0];
+
       function autoResize(element) {
         element.style.height = "auto";
         element.style.height = `${element.scrollHeight}px`;
+      }
+
+      function resizeDropdownElements() {
+        document.getElementsByClassName("dropdown")[0].style.height =
+          `${dropdownButton.scrollHeight}px`;
+
+        document.getElementsByClassName("dropdown-content")[0].style.top =
+          `${dropdownButton.scrollHeight / 2}px`;
+
+        document.getElementsByClassName(
+          "dropdown-content",
+        )[0].children[0].style.height = `${dropdownButton.scrollHeight / 2}px`;
       }
 
       document.querySelectorAll(".tab button").forEach((button) => {
@@ -537,7 +574,18 @@
         });
       });
 
-      ["about", "payment", "jobs", "request"].forEach((sectionName) => {
+      dropdownButton.addEventListener("click", (event) => {
+        event.preventDefault();
+        if (dropdownButton.parentElement.classList.contains("active")) {
+          dropdownButton.nextElementSibling.style.maxHeight = `0px`;
+        } else {
+          dropdownButton.nextElementSibling.style.maxHeight = `${dropdownButton.nextElementSibling.scrollHeight}px`;
+        }
+
+        dropdownButton.parentElement.classList.toggle("active");
+      });
+
+      [("about", "payment", "jobs", "request")].forEach((sectionName) => {
         document
           .getElementById(sectionName + "-button")
           .addEventListener("click", (event) => {
@@ -552,6 +600,12 @@
         .addEventListener("input", function () {
           autoResize(this);
         });
+
+      window.addEventListener("resize", (event) => {
+        resizeDropdownElements();
+      });
+
+      resizeDropdownElements();
     </script>
 
     <!--Switching themes-->
