@@ -585,7 +585,7 @@
         dropdownButton.parentElement.classList.toggle("active");
       });
 
-      [("about", "payment", "jobs", "request")].forEach((sectionName) => {
+      ["about", "payment", "jobs", "request"].forEach((sectionName) => {
         document
           .getElementById(sectionName + "-button")
           .addEventListener("click", (event) => {
