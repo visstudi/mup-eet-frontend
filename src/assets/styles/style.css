@@ -492,7 +492,7 @@ footer a {
   background-image: radial-gradient(
     circle at 5% 40%,
     rgb(112 157 207 / 0.3),
-    var(--background-color) 60%
+    var(--background-color) 54%
   );
 }
 
@@ -609,7 +609,7 @@ ul {
   border-style: solid;
   border-radius: min(6.5dvw, 3dvh);
   font-family: "Eet Route", "Arial", sans-serif;
-  letter-spacing: 10%;
+  letter-spacing: 0.7vw;
   font-size: min(9.5dvw, 4.5dvh);
   font-weight: 700;
 }
@@ -747,9 +747,11 @@ textarea {
 }
 
 .dropdown-button {
-  position: absolute;
+  position: relative;
   justify-content: space-between;
-  z-index: 1;
+  z-index: 12;
+  display: flex;
+  align-items: center;
 }
 
 .dropdown > button > svg {
@@ -768,6 +770,8 @@ textarea {
   top: 2.75dvh;
   left: 0;
   transition: max-height 0.25s ease-in-out;
+  z-index: 11;
+  max-height: 0;
 }
 
 .dropdown-content > div {
@@ -784,6 +788,48 @@ textarea {
 
 .dropdown-content > div:last-child {
   border-radius: 0 0 min(3rem, 2dvh) min(3rem, 2dvh);
+}
+
+.dropdown.active .dropdown-content {
+  max-height: 50dvh; 
+  z-index: 10;       
+}
+
+.dropdown-content {
+  display: block; 
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease-in-out; 
+  position: absolute;
+  width: 100%;
+  z-index: 10;
+}
+
+.dropdown.active .dropdown-content {
+  max-height: 300px; 
+}
+
+.consert-block {
+  flex-direction: row !important; 
+  align-items: flex-start;       
+  gap: 12px;                     
+  padding-block: 10px;
+}
+
+.consert-block input#check-form {
+  width: min(3dvw, 2dvh) !important; 
+  height: min(3dvw, 2dvh) !important;
+  flex-shrink: 0;                   
+  margin-top: 0;                  
+  cursor: pointer;
+}
+
+.consert-block label {
+  padding-inline-start: 0 !important; 
+  font-size: min(1.8rem, 1.7dvh) !important;
+  line-height: 1.3;
+  cursor: pointer;
+  user-select: none;
 }
 
 input::placeholder {

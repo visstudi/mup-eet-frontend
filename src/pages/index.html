@@ -415,7 +415,13 @@
           <fieldset>
             <div class="input-block">
               <label for="request-name" class="required">ФИО</label>
-              <input type="text" id="request-name" />
+              <input 
+                type="text" 
+                id="request-name"
+                placeholder="Иванов Иван Иванович"
+                pattern="^[A-Za-zА-Яа-яЁё\s-]+$" 
+                required
+                />
             </div>
 
             <div class="input-block">
@@ -426,15 +432,15 @@
                 type="tel"
                 id="request-phone"
                 placeholder="+7 (ххх) ххх хх хх"
-                pattern="\+7\s\(\d{3}\)\s\d{3}-\d{2}-\d{2}"
                 required
               />
             </div>
 
             <div class="input-block">
               <label for="request-type" class="required">Вид обращения</label>
+              <input type="hidden" name="request_type" id="request-type-input" value="Жалоба" required />
               <div class="dropdown">
-                <button class="dropdown-button">
+                <button class="dropdown-button" type="button">
                   <p id="dropdown-choice">Жалоба</p>
                   <svg
                     viewBox="0 0 21 21"
@@ -473,15 +479,13 @@
             </div>
 
             <div class="input-block">
-              <label for="request-subject" class="required"
-                >Тема обращения</label
-              >
+              <label for="request-subject" class="required">Тема обращения</label>
               <input type="text" id="request-subject" required/>
             </div>
 
             <div class="input-block">
               <label for="request-text" class="required">Текст обращения</label>
-              <textarea name="" id="request-text"></textarea>
+              <textarea name="" id="request-text" required></textarea>
             </div>
 
             <div class="g-recaptcha"></div>
@@ -501,6 +505,10 @@
                   />
                 </svg>
               </button>
+            </div>
+            <div class="input-block consert-block">
+                <input type="checkbox" id="check-form" required />
+                <label for="check-form">Я даю согласие на обработку персональных данных в соответствии с Федеральным законом «О персональных данных» от 27.07.2006 №152-ФЗ.*</label>
             </div>
           </fieldset>
         </form>
@@ -546,5 +554,8 @@
 
     <!--Switching themes-->
     <script src="../assets/scripts/dark-mode.js"></script>
+
+    <!--Form behavior-->
+    <script src="../assets/scripts/form-behavior.js"></script>
   </body>
 </html>
