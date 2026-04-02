@@ -5,6 +5,7 @@
     <meta charset="utf-8" />
     <title>МУП ЭнгельсЭлектроТранс</title>
     <link rel="stylesheet" href="../assets/styles/style.css" />
+    <script src="https://unpkg.com/imask"></script>
   </head>
   <body>
     <header>
@@ -422,9 +423,11 @@
                 >Телефон обратной связи</label
               >
               <input
-                type="text"
+                type="tel"
                 id="request-phone"
                 placeholder="+7 (ххх) ххх хх хх"
+                pattern="\+7\s\(\d{3}\)\s\d{3}-\d{2}-\d{2}"
+                required
               />
             </div>
 
@@ -458,7 +461,7 @@
             <div class="input-block">
               <label for="request-datetime">Дата и время</label>
               <input
-                type="text"
+                type="datetime-local"
                 id="request-datetime"
                 placeholder="12.03.2026 12:31"
               />
@@ -473,7 +476,7 @@
               <label for="request-subject" class="required"
                 >Тема обращения</label
               >
-              <input type="text" id="request-subject" />
+              <input type="text" id="request-subject" required/>
             </div>
 
             <div class="input-block">
@@ -507,7 +510,7 @@
       <div id="footer-about">
         <div class="footer-info-block">
           <p>Политики сайта:</p>
-          <a href="">Политика обработки данных</a>
+          <a href="../pages/policy.html">Политика обработки данных</a>
         </div>
         <address>
           <div class="footer-info-block">
@@ -519,7 +522,7 @@
           </div>
           <div class="footer-info-block">
             <p>Адрес:</p>
-            <a href="https://maps.google.com"
+            <a href="https://yandex.ru/maps/-/CPbob-3j"
               >г. Энгельс, ул. Островского, д. 40</a
             >
           </div>
@@ -539,74 +542,7 @@
     </footer>
 
     <!--Opening info tabs-->
-    <script>
-      const dropdownButton =
-        document.getElementsByClassName("dropdown-button")[0];
-
-      function autoResize(element) {
-        element.style.height = "auto";
-        element.style.height = `${element.scrollHeight}px`;
-      }
-
-      function resizeDropdownElements() {
-        document.getElementsByClassName("dropdown")[0].style.height =
-          `${dropdownButton.scrollHeight}px`;
-
-        document.getElementsByClassName("dropdown-content")[0].style.top =
-          `${dropdownButton.scrollHeight / 2}px`;
-
-        document.getElementsByClassName(
-          "dropdown-content",
-        )[0].children[0].style.height = `${dropdownButton.scrollHeight / 2}px`;
-      }
-
-      document.querySelectorAll(".tab button").forEach((button) => {
-        button.addEventListener("click", function () {
-          if (button.parentElement.classList.contains("active")) {
-            button.nextElementSibling.style.maxHeight = `0px`;
-            button.nextElementSibling.style.paddingBlock = `0px`;
-          } else {
-            button.nextElementSibling.style.paddingBlock = `min(2.5dvw, 1dvh)`;
-            button.nextElementSibling.style.maxHeight = `calc(${button.nextElementSibling.scrollHeight}px + 2*min(2.5dvw, 1dvh))`;
-          }
-
-          button.parentElement.classList.toggle("active");
-        });
-      });
-
-      dropdownButton.addEventListener("click", (event) => {
-        event.preventDefault();
-        if (dropdownButton.parentElement.classList.contains("active")) {
-          dropdownButton.nextElementSibling.style.maxHeight = `0px`;
-        } else {
-          dropdownButton.nextElementSibling.style.maxHeight = `${dropdownButton.nextElementSibling.scrollHeight}px`;
-        }
-
-        dropdownButton.parentElement.classList.toggle("active");
-      });
-
-      ["about", "payment", "jobs", "request"].forEach((sectionName) => {
-        document
-          .getElementById(sectionName + "-button")
-          .addEventListener("click", (event) => {
-            document
-              .getElementById(sectionName + "-section")
-              .scrollIntoView({ behavior: "smooth" });
-          });
-      });
-
-      document
-        .getElementsByTagName("textarea")[0]
-        .addEventListener("input", function () {
-          autoResize(this);
-        });
-
-      window.addEventListener("resize", (event) => {
-        resizeDropdownElements();
-      });
-
-      resizeDropdownElements();
-    </script>
+    <script src="../assets/scripts/opening-info-tabs.js"></script>
 
     <!--Switching themes-->
     <script src="../assets/scripts/dark-mode.js"></script>
