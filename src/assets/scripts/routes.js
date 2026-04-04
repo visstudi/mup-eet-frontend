@@ -1,0 +1,50 @@
+document.addEventListener("DOMContentLoaded", async () => {
+  const API_BASE_URL = ""; 
+  const container = document.querySelector(".tabs-container");
+
+  const hexToRgb = (hex) => {
+    const r = parseInt(hex.slice(1, 3), 16);
+    const g = parseInt(hex.slice(3, 5), 16);
+    const b = parseInt(hex.slice(5, 7), 16);
+    return `${r} ${g} ${b}`;
+  };
+
+  try {
+    const response = await fetch(`${API_BASE_URL}/NetworkStates/get`);
+    const data = await response.json();
+    
+    container.innerHTML = "";
+
+    data.routes.forEach(route => {
+      const rgb = hexToRgb(route.color);
+      const btn = document.createElement("button");
+      
+      btn.className = `routes-tab ${!route.state ? 'inactive' : ''}`;
+      
+      btn.style.setProperty("--section-accent-color", rgb);
+
+      btn.onclick = () => {
+        sessionStorage.setItem('selectedRoute', JSON.stringify(route));
+        location.href = './route.html';
+      };
+
+      btn.innerHTML = `
+        <div class="routes-tab-route">
+          <div class="routes-tab-number">
+            ${route.name}
+          </div>
+          <div class="routes-tab-status">
+            <p>${route.state ? 'Работает' : 'Не работает'}</p>
+          </div>
+        </div>
+        <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M18.6611 13.9649C18.6611 13.8707 18.6434 13.7823 18.608 13.6999C18.5727 13.6174 18.5167 13.5408 18.4402 13.4701L11.7955 7.03756C11.6659 6.90207 11.5039 6.83433 11.3096 6.83433C11.18 6.83433 11.0651 6.86378 10.965 6.92269C10.8589 6.9816 10.7765 7.06406 10.7175 7.1701C10.6527 7.27024 10.6204 7.38805 10.6204 7.52353C10.6204 7.70614 10.6851 7.86814 10.8147 8.00951L16.9822 13.9649L10.8147 19.9292C10.6851 20.0647 10.6204 20.2267 10.6204 20.4152C10.6204 20.5448 10.6527 20.6626 10.7175 20.7686C10.7765 20.8746 10.8589 20.9542 10.965 21.0072C11.0651 21.0661 11.18 21.0955 11.3096 21.0955C11.5039 21.0955 11.6659 21.0307 11.7955 20.9011L18.4402 14.4686C18.5167 14.3979 18.5727 14.3213 18.608 14.2388C18.6434 14.1564 18.6611 14.0651 18.6611 13.9649Z" 
+                fill="rgb(${rgb})" />
+        </svg>
+      `;
+      container.appendChild(btn);
+    });
+  } catch (error) {
+    console.error("Ошибка загрузки данных:", error);
+  }
+});

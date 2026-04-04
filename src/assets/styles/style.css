@@ -26,7 +26,7 @@
   --main-text-color: #323232;
   --buttons-text-color: #fff;
   --tab-backround-color: #ccdcee;
-  --active-tab-text-color: #fff;
+  --active-tab-text-color: #334152;
   --input-background-color: #d8e6f5;
   --footer-background-color: #282828;
   --label-text-color: #555555;
@@ -296,6 +296,19 @@ main section:first-child {
   font-weight: 500;
 }
 
+#route-price a svg {
+  width: min(2dvw, 1.25dvh);
+  height: auto;
+  display: inline-block;
+  vertical-align: middle;
+  margin-bottom: 0.2dvh;
+  margin-left: 0.5dvw;
+}
+
+#route-price a svg path {
+  fill: rgb(var(--section-accent-color));
+}
+
 #route-map > p:last-child {
   font-size: min(3.5dvw, 1.5dvh);
   color: #878787;
@@ -503,13 +516,30 @@ footer a {
   width: 100%;
 }
 
-.no-vacancies-message {
-  font-size: min(4.5rem, 3.5dvh);
-  font-weight: 800;
+.no-vacancies-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5dvh;
+  opacity: 0.5;
+}
+
+.no-vacancies-icon {
+  width: min(18dvw, 8dvh);
+  height: auto;
+}
+
+.no-vacancies-icon path {
+  fill: var(--main-text-color);
+}
+
+.no-vacancies-text {
+  font-size: min(3.5rem, 2.5dvh);
+  font-weight: 700;
   text-align: center;
+  line-height: 1.2;
   color: var(--main-text-color);
-  opacity: 0.9;
-  margin: 0;                  
 }
 
 #jobs-section .tabs-container .tab {
@@ -663,19 +693,19 @@ ul {
 
 .tab {
   background-color: var(--tab-backround-color);
-  border-radius: min(1.75rem, 1.75dvh);
+  border-radius: min(1.5rem, 1.5dvh);
   position: relative;
   transition: background-color 0.25s ease-in-out;
   padding: min(2.5dvw, 1dvh) min(5dvw, 2.5dvh);
 }
 
 .tab:first-child {
-  border-radius: min(3rem, 2dvh) min(3rem, 2dvh) min(1.75rem, 1.75dvh)
-    min(1.75rem, 1.75dvh);
+  border-radius: min(3rem, 2dvh) min(3rem, 2dvh) min(1.5rem, 1.5dvh)
+    min(1.5rem, 1.5dvh);
 }
 
 .tab:last-child {
-  border-radius: min(1.75rem, 1.75dvh) min(1.75rem, 1.75dvh) min(3rem, 2dvh)
+  border-radius: min(1.75rem, 1.75dvh) min(1.5rem, 1.5dvh) min(3rem, 2dvh)
     min(3rem, 2dvh);
 }
 
