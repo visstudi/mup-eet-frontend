@@ -26,7 +26,7 @@
   --main-text-color: #323232;
   --buttons-text-color: #fff;
   --tab-backround-color: #ccdcee;
-  --active-tab-text-color: #fff;
+  --active-tab-text-color: #334152;
   --input-background-color: #d8e6f5;
   --footer-background-color: #282828;
   --label-text-color: #555555;
@@ -241,10 +241,8 @@ main section:first-child {
 }
 
 #route-main-section {
-  /* Set by API (element.style.setProperty("--section-accent-color", "<color>")) */
   --section-accent-color: 211 216 0;
-
-  --section-secondary-color: rgb(var(--section-accent-color) / 0.2);
+  --section-secondary-color: rgb(var(--section-accent-color) / 0.05);
   padding: min(7dvw, 3dvh) min(4.5dvw, 2dvh);
   display: flex;
   flex-direction: column;
@@ -258,24 +256,32 @@ main section:first-child {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 15px;
 }
 
 #route-data {
   display: flex;
   flex-direction: column;
-  align-items: end;
+  align-items: flex-end; 
+  text-align: right;
+  width: min-content; 
+  max-width: 60%;
 }
 
 #route-data p:first-child {
-  color: var(--main-text-color);
+  white-space: nowrap; 
   font-size: min(6dvw, 3dvh);
   font-weight: 700;
+  color: var(--main-text-color);
 }
 
 #route-data p:last-child {
+  width: 100%;
   color: #6c737b;
   font-size: min(3.5dvw, 1.7dvh);
   font-weight: 500;
+  line-height: 1.2;
+  margin-top: 4px;
 }
 
 #route-price,
@@ -294,6 +300,19 @@ main section:first-child {
   font-size: min(4.5dvw, 2dvh);
   color: var(--main-text-color);
   font-weight: 500;
+}
+
+#route-price a svg {
+  width: min(2dvw, 1.25dvh);
+  height: auto;
+  display: inline-block;
+  vertical-align: middle;
+  margin-bottom: 0.2dvh;
+  margin-left: 0.5dvw;
+}
+
+#route-price a svg path {
+  fill: rgb(var(--section-accent-color));
 }
 
 #route-map > p:last-child {
@@ -488,9 +507,55 @@ footer a {
   min-height: 90dvh;
 }
 
+#jobs-section {
+  min-height: 90dvh;           
+  display: flex;
+  flex-direction: column;    
+  justify-content: flex-start; 
+}
+
+#jobs-section .tabs-container {
+  flex-grow: 1;                
+  display: flex;
+  flex-direction: column;
+  justify-content: center;     
+  width: 100%;
+}
+
+.no-vacancies-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5dvh;
+  opacity: 0.5;
+}
+
+.no-vacancies-icon {
+  width: min(18dvw, 8dvh);
+  height: auto;
+}
+
+.no-vacancies-icon path {
+  fill: var(--main-text-color);
+}
+
+.no-vacancies-text {
+  font-size: min(3.5rem, 2.5dvh);
+  font-weight: 700;
+  text-align: center;
+  line-height: 1.2;
+  color: var(--main-text-color);
+}
+
+#jobs-section .tabs-container .tab {
+  width: 100%;
+  margin-block: 0.1dvh;        
+}
+
 #about-section {
   background-image: radial-gradient(
-    circle at 5% 40%,
+    circle at 5% 44%,
     rgb(112 157 207 / 0.3),
     var(--background-color) 54%
   );
@@ -651,7 +716,7 @@ ul {
   justify-content: center;
   align-items: center;
   color: rgb(var(--section-accent-color));
-  background-color: var(--section-secondary-color);
+  background-color: rgb(var(--section-accent-color) / 0.2) !important;
   border-color: rgb(var(--section-accent-color));
   border-width: min(0.5dvw, 0.25dvh);
   border-style: solid;
@@ -682,19 +747,19 @@ ul {
 
 .tab {
   background-color: var(--tab-backround-color);
-  border-radius: min(1.75rem, 1.75dvh);
+  border-radius: min(1.5rem, 1.5dvh);
   position: relative;
   transition: background-color 0.25s ease-in-out;
   padding: min(2.5dvw, 1dvh) min(5dvw, 2.5dvh);
 }
 
 .tab:first-child {
-  border-radius: min(3rem, 2dvh) min(3rem, 2dvh) min(1.75rem, 1.75dvh)
-    min(1.75rem, 1.75dvh);
+  border-radius: min(3rem, 2dvh) min(3rem, 2dvh) min(1.5rem, 1.5dvh)
+    min(1.5rem, 1.5dvh);
 }
 
 .tab:last-child {
-  border-radius: min(1.75rem, 1.75dvh) min(1.75rem, 1.75dvh) min(3rem, 2dvh)
+  border-radius: min(1.75rem, 1.75dvh) min(1.5rem, 1.5dvh) min(3rem, 2dvh)
     min(3rem, 2dvh);
 }
 
@@ -899,4 +964,36 @@ iframe {
   border-width: min(0.6dvw, 0.3dvh);
   border-style: solid;
   border-radius: min(5.5dvw, 3dvh);
+}
+
+.inactive {
+  opacity: 0.5;
+}
+
+tr th {
+  font-weight: 600;
+}
+
+tr td {
+  font-weight: 400; 
+}
+
+.route-alert {
+  background: rgb(255 68 68 / 0.05) !important; 
+  border: 2px solid #ff4444; 
+  border-radius: min(6.5dvw, 3dvh);
+  padding: min(4dvw, 2dvh);
+  color: #ff4444;
+  margin-bottom: min(4dvw, 2dvh);
+}
+
+.route-alert b {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 1.1em;
+}
+
+#price-frame, #table-wrapper {
+  background-color: var(--section-secondary-color);
+  width: 100%;
 }
