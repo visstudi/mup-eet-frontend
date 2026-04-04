@@ -170,7 +170,44 @@
             </svg>
           </button>
         </div>
-        <div id="about-gallery"></div>
+        <div class="gallery">
+          <ul class="carousel">
+            <li class="carousel-item">
+              <img src="../assets/images/photos/1.jpg" alt="1" />
+            </li>
+            <li class="carousel-item">
+              <img src="../assets/images/photos/2.jpg" alt="2" />
+            </li>
+            <li class="carousel-item">
+              <img src="../assets/images/photos/3.jpg" alt="3" />
+            </li>
+            <li class="carousel-item">
+              <img src="../assets/images/photos/4.jpg" alt="4" />
+            </li>
+            <li class="carousel-item">
+              <img src="../assets/images/photos/5.jpg" alt="5" />
+            </li>
+            <li class="carousel-item">
+              <img src="../assets/images/photos/6.jpg" alt="6" />
+            </li>
+            <li class="carousel-item">
+              <img src="../assets/images/photos/7.jpg" alt="7" />
+            </li>
+            <li class="carousel-item">
+              <img src="../assets/images/photos/8.jpg" alt="8" />
+            </li>
+          </ul>
+          <div class="carousel-marker-group">
+            <span class="carousel-marker marker-active"></span
+            ><span class="carousel-marker"></span
+            ><span class="carousel-marker"></span
+            ><span class="carousel-marker"></span
+            ><span class="carousel-marker"></span
+            ><span class="carousel-marker"></span
+            ><span class="carousel-marker"></span
+            ><span class="carousel-marker"></span>
+          </div>
+        </div>
       </section>
       <hr />
       <section class="screen-info" id="payment-section">
@@ -415,13 +452,13 @@
           <fieldset>
             <div class="input-block">
               <label for="request-name" class="required">ФИО</label>
-              <input 
-                type="text" 
+              <input
+                type="text"
                 id="request-name"
                 placeholder="Иванов Иван Иванович"
-                pattern="^[A-Za-zА-Яа-яЁё\s-]+$" 
+                pattern="^[A-Za-zА-Яа-яЁё\s-]+$"
                 required
-                />
+              />
             </div>
 
             <div class="input-block">
@@ -438,7 +475,13 @@
 
             <div class="input-block">
               <label for="request-type" class="required">Вид обращения</label>
-              <input type="hidden" name="request_type" id="request-type-input" value="Жалоба" required />
+              <input
+                type="hidden"
+                name="request_type"
+                id="request-type-input"
+                value="Жалоба"
+                required
+              />
               <div class="dropdown">
                 <button class="dropdown-button" type="button">
                   <p id="dropdown-choice">Жалоба</p>
@@ -479,8 +522,10 @@
             </div>
 
             <div class="input-block">
-              <label for="request-subject" class="required">Тема обращения</label>
-              <input type="text" id="request-subject" required/>
+              <label for="request-subject" class="required"
+                >Тема обращения</label
+              >
+              <input type="text" id="request-subject" required />
             </div>
 
             <div class="input-block">
@@ -507,8 +552,12 @@
               </button>
             </div>
             <div class="input-block consert-block">
-                <input type="checkbox" id="check-form" required />
-                <label for="check-form">Я даю согласие на обработку персональных данных в соответствии с Федеральным законом «О персональных данных» от 27.07.2006 №152-ФЗ.*</label>
+              <input type="checkbox" id="check-form" required />
+              <label for="check-form"
+                >Я даю согласие на обработку персональных данных в соответствии
+                с Федеральным законом «О персональных данных» от 27.07.2006
+                №152-ФЗ.*</label
+              >
             </div>
           </fieldset>
         </form>
@@ -548,6 +597,9 @@
         <p>© МУП “ЭнгельсЭлектроТранс” 2026 год</p>
       </div>
     </footer>
+
+    <!--Carousel markers-->
+    <script src="../assets/scripts/carousel-markers.js"></script>
 
     <!--Opening info tabs-->
     <script src="../assets/scripts/opening-info-tabs.js"></script>
