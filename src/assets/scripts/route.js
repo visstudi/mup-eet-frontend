@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
   const route = JSON.parse(sessionStorage.getItem('selectedRoute'));
-
   if (!route) {
     location.href = './routes.html';
     return;
@@ -23,26 +22,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!route.state) {
     const alertBox = document.createElement("div");
-    alertBox.style = `
-      background: rgb(255 68 68 / 0.1); 
-      border: 2px solid #ff4444; 
-      border-radius: 20px; 
-      padding: 15px 20px; 
-      color: #ff4444; 
-      margin-bottom: 20px;
-    `;
+    alertBox.className = "route-alert";
     const reason = route.reason || "Причина выясняется";
-    alertBox.innerHTML = `
-      <b style="font-size: 1.1em; display: block; margin-bottom: 5px;">Прервано движение по маршруту ${route.name}</b>
-      <span style="font-size: 0.9em; opacity: 0.9;">${reason}</span>
-    `;
-    section.prepend(alertBox);
+    alertBox.innerHTML = `<b>Прервано движение по маршруту ${route.name}</b>${reason}`;
+    document.getElementById("route-about").after(alertBox);
   }
 
-  // 3. Цены
   const priceLabels = document.querySelectorAll(".price p:first-child");
   const priceValues = document.querySelectorAll(".price p:last-child");
-
   if (route.routeType === 0) {
     priceLabels[0].textContent = "по карте";
     priceLabels[1].textContent = "наличкой";
@@ -57,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
   tbody.innerHTML = "";
 
   if (!route.scheduleTable || route.scheduleTable.length === 0) {
-    tbody.innerHTML = `<tr><td colspan="2" style="text-align: center; padding: 20px;">Информация временно неизвестна</td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="2" style="text-align: center; padding: 20px;">Расписания пока нет</td></tr>`;
   } else {
     const now = new Date();
     const currentSec = now.getHours() * 3600 + now.getMinutes() * 60 + now.getSeconds();
@@ -70,7 +57,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     scheduleWithSeconds.forEach((row, index) => {
       const tr = document.createElement("tr");
-      
       const startTime = row.startRange.slice(0, 5);
       const endTime = row.endRange ? ` - ${row.endRange.slice(0, 5)}` : "";
       const annotation = row.annotation ? ` (${row.annotation})` : "";
@@ -79,15 +65,12 @@ document.addEventListener("DOMContentLoaded", () => {
       tr.innerHTML = `<td>${startTime}${endTime}${annotation}</td><td>${interval}</td>`;
 
       let isActive = false;
-      
       if (row.endSec) {
         if (currentSec >= row.startSec && currentSec <= row.endSec) isActive = true;
       } else {
         const nextRow = scheduleWithSeconds[index + 1];
-        if (currentSec >= row.startSec) {
-          if (!nextRow || currentSec < nextRow.startSec) {
-            isActive = true;
-          }
+        if (currentSec >= row.startSec && (!nextRow || currentSec < nextRow.startSec)) {
+          isActive = true;
         }
       }
 

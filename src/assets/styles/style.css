@@ -241,10 +241,8 @@ main section:first-child {
 }
 
 #route-main-section {
-  /* Set by API (element.style.setProperty("--section-accent-color", "<color>")) */
   --section-accent-color: 211 216 0;
-
-  --section-secondary-color: rgb(var(--section-accent-color) / 0.2);
+  --section-secondary-color: rgb(var(--section-accent-color) / 0.05);
   padding: min(7dvw, 3dvh) min(4.5dvw, 2dvh);
   display: flex;
   flex-direction: column;
@@ -258,24 +256,32 @@ main section:first-child {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 15px;
 }
 
 #route-data {
   display: flex;
   flex-direction: column;
-  align-items: end;
+  align-items: flex-end; 
+  text-align: right;
+  width: min-content; 
+  max-width: 60%;
 }
 
 #route-data p:first-child {
-  color: var(--main-text-color);
+  white-space: nowrap; 
   font-size: min(6dvw, 3dvh);
   font-weight: 700;
+  color: var(--main-text-color);
 }
 
 #route-data p:last-child {
+  width: 100%;
   color: #6c737b;
   font-size: min(3.5dvw, 1.7dvh);
   font-weight: 500;
+  line-height: 1.2;
+  margin-top: 4px;
 }
 
 #route-price,
@@ -662,7 +668,7 @@ ul {
   justify-content: center;
   align-items: center;
   color: rgb(var(--section-accent-color));
-  background-color: var(--section-secondary-color);
+  background-color: rgb(var(--section-accent-color) / 0.2) !important;
   border-color: rgb(var(--section-accent-color));
   border-width: min(0.5dvw, 0.25dvh);
   border-style: solid;
@@ -910,4 +916,36 @@ iframe {
   border-width: min(0.6dvw, 0.3dvh);
   border-style: solid;
   border-radius: min(5.5dvw, 3dvh);
+}
+
+.inactive {
+  opacity: 0.5;
+}
+
+tr th {
+  font-weight: 600;
+}
+
+tr td {
+  font-weight: 400; 
+}
+
+.route-alert {
+  background: rgb(255 68 68 / 0.05) !important; 
+  border: 2px solid #ff4444; 
+  border-radius: min(6.5dvw, 3dvh);
+  padding: min(4dvw, 2dvh);
+  color: #ff4444;
+  margin-bottom: min(4dvw, 2dvh);
+}
+
+.route-alert b {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 1.1em;
+}
+
+#price-frame, #table-wrapper {
+  background-color: var(--section-secondary-color);
+  width: 100%;
 }
