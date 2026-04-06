@@ -1,66 +1,72 @@
-const dropdownButton =
-        document.getElementsByClassName("dropdown-button")[0];
+const dropdownButton = document.getElementsByClassName("dropdown-button")[0];
 
-      function autoResize(element) {
-        element.style.height = "auto";
-        element.style.height = `${element.scrollHeight}px`;
-      }
+function autoResize(element) {
+  element.style.height = "auto";
+  element.style.height = `${element.scrollHeight}px`;
+}
 
-      function resizeDropdownElements() {
-        document.getElementsByClassName("dropdown")[0].style.height =
-          `${dropdownButton.scrollHeight}px`;
+function resizeDropdownElements() {
+  document.getElementsByClassName("dropdown")[0].style.height =
+    `${dropdownButton.scrollHeight}px`;
 
-        document.getElementsByClassName("dropdown-content")[0].style.top =
-          `${dropdownButton.scrollHeight / 2}px`;
+  document.getElementsByClassName("dropdown-content")[0].style.top =
+    `${dropdownButton.scrollHeight / 2}px`;
 
-        document.getElementsByClassName(
-          "dropdown-content",
-        )[0].children[0].style.height = `${dropdownButton.scrollHeight / 2}px`;
-      }
+  document.getElementsByClassName(
+    "dropdown-content",
+  )[0].children[0].style.height = `${dropdownButton.scrollHeight / 2}px`;
+}
 
-      document.querySelectorAll(".tab button").forEach((button) => {
-        button.addEventListener("click", function () {
-          if (button.parentElement.classList.contains("active")) {
-            button.nextElementSibling.style.maxHeight = `0px`;
-            button.nextElementSibling.style.paddingBlock = `0px`;
-          } else {
-            button.nextElementSibling.style.paddingBlock = `min(2.5dvw, 1dvh)`;
-            button.nextElementSibling.style.maxHeight = `calc(${button.nextElementSibling.scrollHeight}px + 2*min(2.5dvw, 1dvh))`;
-          }
+function closeTab(button) {
+  button.nextElementSibling.style.maxHeight = `0px`;
+  button.nextElementSibling.style.paddingBlock = `0px`;
+  button.parentElement.classList.remove("active");
+}
 
-          button.parentElement.classList.toggle("active");
-        });
-      });
+function openTab(button) {
+  button.nextElementSibling.style.paddingBlock = `min(2.5dvw, 1dvh)`;
+  button.nextElementSibling.style.maxHeight = `calc(${button.nextElementSibling.scrollHeight}px + 2*min(2.5dvw, 1dvh))`;
+  button.parentElement.classList.add("active");
+}
 
-      dropdownButton.addEventListener("click", (event) => {
-        event.preventDefault();
-        if (dropdownButton.parentElement.classList.contains("active")) {
-          dropdownButton.nextElementSibling.style.maxHeight = `0px`;
-        } else {
-          dropdownButton.nextElementSibling.style.maxHeight = `${dropdownButton.nextElementSibling.scrollHeight}px`;
-        }
+function openTabAndScroll(id) {
+  openTab(document.getElementById(id).firstElementChild);
+  document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+}
 
-        dropdownButton.parentElement.classList.toggle("active");
-      });
+function toggleTab(button) {
+  if (button.parentElement.classList.contains("active")) {
+    closeTab(button);
+  } else {
+    openTab(button);
+  }
+}
 
-      ["about", "payment", "jobs", "request"].forEach((sectionName) => {
-        document
-          .getElementById(sectionName + "-button")
-          .addEventListener("click", (event) => {
-            document
-              .getElementById(sectionName + "-section")
-              .scrollIntoView({ behavior: "smooth" });
-          });
-      });
+document.querySelectorAll(".tab button").forEach((button) => {
+  button.addEventListener("click", function () {
+    toggleTab(button);
+  });
+});
 
-      document
-        .getElementsByTagName("textarea")[0]
-        .addEventListener("input", function () {
-          autoResize(this);
-        });
+dropdownButton.addEventListener("click", (event) => {
+  event.preventDefault();
+  if (dropdownButton.parentElement.classList.contains("active")) {
+    dropdownButton.nextElementSibling.style.maxHeight = `0px`;
+  } else {
+    dropdownButton.nextElementSibling.style.maxHeight = `${dropdownButton.nextElementSibling.scrollHeight}px`;
+  }
 
-      window.addEventListener("resize", (event) => {
-        resizeDropdownElements();
-      });
+  dropdownButton.parentElement.classList.toggle("active");
+});
 
-      resizeDropdownElements();
+document
+  .getElementsByTagName("textarea")[0]
+  .addEventListener("input", function () {
+    autoResize(this);
+  });
+
+window.addEventListener("resize", (event) => {
+  resizeDropdownElements();
+});
+
+resizeDropdownElements();

@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const route = JSON.parse(sessionStorage.getItem('selectedRoute'));
+  const route = JSON.parse(sessionStorage.getItem("selectedRoute"));
   if (!route) {
-    location.href = './routes.html';
+    location.href = "./routes.html";
     return;
   }
 
@@ -17,14 +17,18 @@ document.addEventListener("DOMContentLoaded", () => {
   section.style.setProperty("--section-accent-color", rgb);
 
   document.querySelector(".routes-tab-number").textContent = route.name;
-  document.querySelector("#route-data p:first-child").textContent = `Маршрут №${route.name}`;
-  document.querySelector("#route-data p:last-child").textContent = `${route.fromStation} — ${route.toStation}`;
+  document.querySelector("#route-data p:first-child").textContent =
+    `Маршрут №${route.name}`;
+  document.querySelector("#route-data p:last-child").textContent =
+    `${route.fromStation} — ${route.toStation}`;
 
   if (!route.state) {
     const alertBox = document.createElement("div");
-    alertBox.className = "route-alert";
-    const reason = route.reason || "Причина выясняется";
-    alertBox.innerHTML = `<b>Прервано движение по маршруту ${route.name}</b>${reason}`;
+    alertBox.id = "route-alert";
+    alertBox.innerHTML = `<p>Прервано движение по маршруту ${route.name}</p>`;
+    if (route.reason) {
+      alertBox.innerHTML += `<p>${route.reason}</p>`;
+    }
     document.getElementById("route-about").after(alertBox);
   }
 
@@ -47,12 +51,17 @@ document.addEventListener("DOMContentLoaded", () => {
     tbody.innerHTML = `<tr><td colspan="2" style="text-align: center; padding: 20px;">Расписания пока нет</td></tr>`;
   } else {
     const now = new Date();
-    const currentSec = now.getHours() * 3600 + now.getMinutes() * 60 + now.getSeconds();
+    const currentSec =
+      now.getHours() * 3600 + now.getMinutes() * 60 + now.getSeconds();
 
-    const scheduleWithSeconds = route.scheduleTable.map(row => ({
+    const scheduleWithSeconds = route.scheduleTable.map((row) => ({
       ...row,
-      startSec: row.startRange.split(':').reduce((acc, time) => (60 * acc) + +time, 0),
-      endSec: row.endRange ? row.endRange.split(':').reduce((acc, time) => (60 * acc) + +time, 0) : null
+      startSec: row.startRange
+        .split(":")
+        .reduce((acc, time) => 60 * acc + +time, 0),
+      endSec: row.endRange
+        ? row.endRange.split(":").reduce((acc, time) => 60 * acc + +time, 0)
+        : null,
     }));
 
     scheduleWithSeconds.forEach((row, index) => {
@@ -60,16 +69,21 @@ document.addEventListener("DOMContentLoaded", () => {
       const startTime = row.startRange.slice(0, 5);
       const endTime = row.endRange ? ` - ${row.endRange.slice(0, 5)}` : "";
       const annotation = row.annotation ? ` (${row.annotation})` : "";
-      const interval = row.interval === -1 ? "дежурный" : `${row.interval} мин.`;
+      const interval =
+        row.interval === -1 ? "дежурный" : `${row.interval} мин.`;
 
       tr.innerHTML = `<td>${startTime}${endTime}${annotation}</td><td>${interval}</td>`;
 
       let isActive = false;
       if (row.endSec) {
-        if (currentSec >= row.startSec && currentSec <= row.endSec) isActive = true;
+        if (currentSec >= row.startSec && currentSec <= row.endSec)
+          isActive = true;
       } else {
         const nextRow = scheduleWithSeconds[index + 1];
-        if (currentSec >= row.startSec && (!nextRow || currentSec < nextRow.startSec)) {
+        if (
+          currentSec >= row.startSec &&
+          (!nextRow || currentSec < nextRow.startSec)
+        ) {
           isActive = true;
         }
       }
