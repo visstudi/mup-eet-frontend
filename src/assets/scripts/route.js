@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const priceValues = document.querySelectorAll(".price p:last-child");
   if (route.routeType === 0) {
     priceLabels[0].textContent = "по карте";
-    priceLabels[1].textContent = "наличкой";
+    priceLabels[1].textContent = "наличные";
   } else {
     priceLabels[0].textContent = "по городу";
     priceLabels[1].textContent = "межгород";
