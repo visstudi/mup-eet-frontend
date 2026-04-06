@@ -728,6 +728,8 @@ ul {
   display: flex;
   flex-direction: column;
   gap: max(0.5dvh, 0.5dvw);
+  margin-top: min(5dvh, 15dvw);
+  margin-bottom: min(5dvh, 15dvw)
 }
 
 #routes-tabs-wrapper {
@@ -842,6 +844,7 @@ ul {
 }
 
 .tab-text a {
+  font-size: min(2.3rem, 2.3dvh);
   font-weight: 700;
   color: var(--main-text-color);
 }
