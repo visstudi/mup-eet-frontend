@@ -51,7 +51,7 @@
   --main-icon-color: #fff;
   --button-arrow-color: #252525;
   --placeholder-text-color: rgb(255 255 255 / 0.5);
-  --tab-icon-color: #0d233e;
+  --tab-icon-color: #fff;
   --marker-group-color: 0 0 0;
 }
 
@@ -837,8 +837,8 @@ ul {
   transition:
     max-height 250ms ease-in-out,
     padding-block 250ms ease-in-out;
-  font-weight: 200;
-  font-size: min(2rem, 2dvh);
+  font-weight: 400;
+  font-size: min(2.3rem, 2.3dvh);
 }
 
 .tab-text a {
@@ -862,6 +862,10 @@ ul {
 
 .tab.active svg {
   transform: rotate(180deg);
+}
+
+.tab.active svg path {
+  fill: var(--active-tab-text-color);
 }
 
 fieldset {
