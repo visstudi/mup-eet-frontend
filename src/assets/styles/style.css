@@ -1039,3 +1039,37 @@ tr td {
   font-size: min(7dvw, 3.5dvh);
   text-align: center;
 }
+
+#policy-section > ol > li {
+  font-size: min(6dvw, 3dvh);
+}
+
+#policy-section p,
+ol li,
+ol ol li,
+ol p {
+  padding-top: min(5dvw, 2.5dvh);
+}
+
+ol p,
+ol ol li {
+  padding-left: min(5dvw, 2.5dvh);
+}
+
+#policy-section ol {
+  counter-reset: item;
+}
+
+#policy-section li {
+  display: block;
+}
+
+#policy-section li:before {
+  content: counters(item, ".") ". ";
+  counter-increment: item;
+}
+
+#policy-section > p {
+  font-size: min(3dvw, 1.5dvh);
+  font-style: italic;
+}
