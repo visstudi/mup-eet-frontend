@@ -92,4 +92,11 @@ document.addEventListener("DOMContentLoaded", () => {
       tbody.appendChild(tr);
     });
   }
+
+  if (route.yandexMapLink) {
+    const mapIframe = document.querySelector("#route-map iframe");
+    mapIframe.src = route.yandexMapLink;
+  } else {
+    document.getElementById("route-map").style.display = "none";
+  }
 });
