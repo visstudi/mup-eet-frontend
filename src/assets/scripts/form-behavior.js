@@ -57,7 +57,8 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // Валидация формы
-const API_BASE_URL = "http://5.3.250.90:5153";
+const API_BASE_URL =
+  "https://cors-anywhere.herokuapp.com/http://5.3.250.90:5153";
 
 const feedbackForm = document.querySelector("form");
 
