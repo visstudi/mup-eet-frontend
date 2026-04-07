@@ -1,23 +1,30 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const vacanciesContainer = document.querySelector("#jobs-section .tabs-container");
-  const jobsInfoParagraph = document.querySelector("#jobs-info p"); 
-  const API_BASE_URL = "";
+  const vacanciesContainer = document.querySelector(
+    "#jobs-section .tabs-container",
+  );
+  const jobsInfoParagraph = document.querySelector("#jobs-info p");
+  const API_BASE_URL = "5.3.250.90:5153";
 
-  const scheduleMap = { 
-    0: "сменный", 
-    1: "5/2", 
-    2: "по графику" 
+  const scheduleMap = {
+    0: "сменный",
+    1: "5/2",
+    2: "по графику",
   };
 
   function formatSalary(v) {
-    const min = v.salaryMin?.toLocaleString('ru-RU');
-    const max = v.salaryMax?.toLocaleString('ru-RU');
+    const min = v.salaryMin?.toLocaleString("ru-RU");
+    const max = v.salaryMax?.toLocaleString("ru-RU");
     switch (v.salaryType) {
-      case 0: return `${min} руб.`;
-      case 1: return `от ${min} руб.`;
-      case 2: return `от ${min} до ${max} руб.`;
-      case 3: return `сдельная`;
-      default: return "по договоренности";
+      case 0:
+        return `${min} руб.`;
+      case 1:
+        return `от ${min} руб.`;
+      case 2:
+        return `от ${min} до ${max} руб.`;
+      case 3:
+        return `сдельная`;
+      default:
+        return "по договоренности";
     }
   }
 
@@ -50,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
     button.addEventListener("click", () => {
       const isActive = tab.classList.contains("active");
 
-      document.querySelectorAll("#jobs-section .tab").forEach(otherTab => {
+      document.querySelectorAll("#jobs-section .tab").forEach((otherTab) => {
         if (otherTab !== tab) {
           otherTab.classList.remove("active");
           const otherContent = otherTab.querySelector(".tab-text");
@@ -98,11 +105,13 @@ document.addEventListener("DOMContentLoaded", () => {
       if (jobsInfoParagraph) jobsInfoParagraph.style.display = "block";
 
       data.vacancies.sort((a, b) => a.id - b.id);
-      data.vacancies.forEach(v => vacanciesContainer.appendChild(createVacancyTab(v)));
-      
+      data.vacancies.forEach((v) =>
+        vacanciesContainer.appendChild(createVacancyTab(v)),
+      );
     } catch (e) {
       console.error("Ошибка API:", e);
-      vacanciesContainer.innerHTML = '<p class="no-vacancies-text">Ошибка загрузки данных</p>';
+      vacanciesContainer.innerHTML =
+        '<p class="no-vacancies-text">Ошибка загрузки данных</p>';
     }
   }
 

@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", async () => {
-  const API_BASE_URL = ""; 
+  const API_BASE_URL = "5.3.250.90:5153";
   const container = document.querySelector(".tabs-container");
 
   const hexToRgb = (hex) => {
@@ -12,20 +12,20 @@ document.addEventListener("DOMContentLoaded", async () => {
   try {
     const response = await fetch(`${API_BASE_URL}/NetworkStates/get`);
     const data = await response.json();
-    
+
     container.innerHTML = "";
 
-    data.routes.forEach(route => {
+    data.routes.forEach((route) => {
       const rgb = hexToRgb(route.color);
       const btn = document.createElement("button");
-      
-      btn.className = `routes-tab ${!route.state ? 'inactive' : ''}`;
-      
+
+      btn.className = `routes-tab ${!route.state ? "inactive" : ""}`;
+
       btn.style.setProperty("--section-accent-color", rgb);
 
       btn.onclick = () => {
-        sessionStorage.setItem('selectedRoute', JSON.stringify(route));
-        location.href = './route.html';
+        sessionStorage.setItem("selectedRoute", JSON.stringify(route));
+        location.href = "./route.html";
       };
 
       btn.innerHTML = `
@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             ${route.name}
           </div>
           <div class="routes-tab-status">
-            <p>${route.state ? 'Работает' : 'Не работает'}</p>
+            <p>${route.state ? "Работает" : "Не работает"}</p>
           </div>
         </div>
         <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
