@@ -94,8 +94,21 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   if (route.yandexMapLink) {
-    const mapIframe = document.querySelector("#route-map iframe");
-    mapIframe.src = route.yandexMapLink;
+    const container = document.getElementById("map-container");
+    
+    const urlParams = new URLSearchParams(route.yandexMapLink.split('?')[1]);
+    const um = urlParams.get('um');
+
+    if (um) {
+      const script = document.createElement("script");
+      script.type = "text/javascript";
+      script.charset = "utf-8";
+      script.async = true;
+
+      script.src = `https://api-maps.yandex.ru/services/constructor/1.0/js/?um=${um}&width=100%&height=100%&lang=ru_RU&scroll=true`;
+
+      container.appendChild(script);
+    }
   } else {
     document.getElementById("route-map").style.display = "none";
   }

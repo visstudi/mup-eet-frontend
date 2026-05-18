@@ -1014,13 +1014,15 @@ textarea {
   border: none;
 }
 
-iframe {
+#map-container {
   width: 100%;
   height: min(60dvw, 28.5dvh);
   border: rgb(var(--section-accent-color));
   border-width: min(0.6dvw, 0.3dvh);
   border-style: solid;
   border-radius: min(5.5dvw, 3dvh);
+  overflow: hidden;
+  background-color: var(--section-secondary-color); 
 }
 
 .inactive {
