@@ -3,7 +3,6 @@ document.addEventListener("DOMContentLoaded", () => {
     "#jobs-section .tabs-container",
   );
   const jobsInfoParagraph = document.querySelector("#jobs-info p");
-  const API_BASE_URL = "http://5.3.250.90:5153";
 
   const scheduleMap = {
     0: "сменный",

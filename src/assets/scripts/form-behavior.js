@@ -56,8 +56,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-const API_BASE_URL = "";
-
 const feedbackForm = document.querySelector("form");
 
 window.onCaptchaSuccess = function() {
