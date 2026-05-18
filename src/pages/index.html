@@ -6,6 +6,7 @@
     <title>МУП ЭнгельсЭлектроТранс</title>
     <link rel="stylesheet" href="../assets/styles/style.css" />
     <script src="https://unpkg.com/imask"></script>
+    <script src="https://smartcaptcha.yandexcloud.net/captcha.js" defer></script>
   </head>
   <body>
     <header>
@@ -686,7 +687,7 @@
                 type="text"
                 id="request-name"
                 placeholder="Иванов Иван Иванович"
-                pattern="^[A-Za-zА-Яа-яЁё\s-]+$"
+                pattern="^[A-Za-zА-Яа-яЁё\s\-]+$"
                 required
               />
             </div>
@@ -782,21 +783,24 @@
               >
             </div>
             <div class="input-block">
-              <button id="send-request-button">
-                Отправить
-                <svg
-                  viewBox="0 0 16 12"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
-                    d="M8.89111 0.191113C9.14593 -0.0637043 9.55907 -0.0637043 9.81389 0.191113L15.0339 5.41111C15.2887 5.66593 15.2887 6.07907 15.0339 6.33389L9.81389 11.5539C9.55907 11.8087 9.14593 11.8087 8.89111 11.5539C8.6363 11.2991 8.6363 10.8859 8.89111 10.6311L12.9972 6.525H0.6525C0.292134 6.525 0 6.23287 0 5.8725C0 5.51213 0.292134 5.22 0.6525 5.22H12.9972L8.89111 1.11389C8.6363 0.85907 8.6363 0.44593 8.89111 0.191113Z"
-                  />
-                </svg>
-              </button>
-            </div>
+              <div
+                id="captcha-container"
+                class="smart-captcha"
+                data-sitekey="ysc1_qbCWBKeidjRPPsO7ZfdUupLKiDyValgcovh6sblz4a25fa31"
+                data-callback="onCaptchaSuccess"
+                data-expired-callback="onCaptchaExpired"
+                style="height: 100px"
+              ></div>
+          </div>
+
+          <div class="input-block">
+            <button id="send-request-button" disabled>
+              Отправить
+              <svg viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M8.89111 0.191113C9.14593 -0.0637043 9.55907 -0.0637043 9.81389 0.191113L15.0339 5.41111C15.2887 5.66593 15.2887 6.07907 15.0339 6.33389L9.81389 11.5539C9.55907 11.8087 9.14593 11.8087 8.89111 11.5539C8.6363 11.2991 8.6363 10.8859 8.89111 10.6311L12.9972 6.525H0.6525C0.292134 6.525 0 6.23287 0 5.8725C0 5.51213 0.292134 5.22 0.6525 5.22H12.9972L8.89111 1.11389C8.6363 0.85907 8.6363 0.44593 8.89111 0.191113Z" />
+              </svg>
+            </button>
+          </div>
           </fieldset>
         </form>
       </section>

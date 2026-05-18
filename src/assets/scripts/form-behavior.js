@@ -56,18 +56,31 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// Валидация формы
-const API_BASE_URL = "http://5.3.250.90:5153";
+const API_BASE_URL = "";
 
 const feedbackForm = document.querySelector("form");
+
+window.onCaptchaSuccess = function() {
+  document.getElementById("send-request-button").disabled = false;
+};
+
+window.onCaptchaExpired = function() {
+  document.getElementById("send-request-button").disabled = true;
+};
 
 feedbackForm.addEventListener("submit", async (e) => {
   e.preventDefault();
 
+  const captchaToken = window.smartCaptcha.getResponse();
+
+  if (!captchaToken) {
+    alert("Пожалуйста, подтвердите, что вы не робот (пройдите капчу).");
+    return; 
+  }
+
   const fullName = document.getElementById("request-name").value.trim();
   const phone = mask.unmaskedValue.trim();
-  const bortNumber =
-    document.getElementById("request-number").value.trim() || "0000";
+  const bortNumber = document.getElementById("request-number").value.trim() || "0000";
   const title = document.getElementById("request-subject").value.trim();
   const description = document.getElementById("request-text").value.trim();
 
@@ -89,6 +102,7 @@ feedbackForm.addEventListener("submit", async (e) => {
     incidentRoute: null,
     title: title || "Без темы",
     description: description || "Без описания",
+    smartToken: captchaToken 
   };
 
   console.log("Отправка объекта:", payload);
@@ -107,13 +121,16 @@ feedbackForm.addEventListener("submit", async (e) => {
       alert("Обращение успешно отправлено!");
       feedbackForm.reset();
       mask.value = "";
+      
+      window.smartCaptcha.reset();
+      document.getElementById("send-request-button").disabled = true;
     } else {
       const errorJson = await response.json();
       console.error("Детали ошибки:", errorJson);
-      alert(
-        "Ошибка сервера: " +
-          JSON.stringify(errorJson.errors || errorJson.title),
-      );
+      alert("Ошибка сервера: " + JSON.stringify(errorJson.errors || errorJson.title));
+      
+      window.smartCaptcha.reset();
+      document.getElementById("send-request-button").disabled = true;
     }
   } catch (err) {
     alert("Сетевая ошибка: " + err.message);
