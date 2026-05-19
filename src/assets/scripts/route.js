@@ -64,6 +64,23 @@ document.addEventListener("DOMContentLoaded", () => {
         : null,
     }));
 
+    let activeIndex = scheduleWithSeconds.findIndex((row, index) => {
+      if (row.endSec) {
+        return currentSec >= row.startSec && currentSec <= row.endSec;
+      } else {
+        const nextRow = scheduleWithSeconds[index + 1];
+        return currentSec >= row.startSec && (!nextRow || currentSec < nextRow.startSec);
+      }
+    });
+
+    if (activeIndex === -1) {
+      activeIndex = scheduleWithSeconds.findIndex(row => row.startSec > currentSec);
+    }
+
+    if (activeIndex === -1) {
+      activeIndex = 0;
+    }
+
     scheduleWithSeconds.forEach((row, index) => {
       const tr = document.createElement("tr");
       const startTime = row.startRange.slice(0, 5);
@@ -74,21 +91,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
       tr.innerHTML = `<td>${startTime}${endTime}${annotation}</td><td>${interval}</td>`;
 
-      let isActive = false;
-      if (row.endSec) {
-        if (currentSec >= row.startSec && currentSec <= row.endSec)
-          isActive = true;
-      } else {
-        const nextRow = scheduleWithSeconds[index + 1];
-        if (
-          currentSec >= row.startSec &&
-          (!nextRow || currentSec < nextRow.startSec)
-        ) {
-          isActive = true;
-        }
+      if (index === activeIndex) {
+        tr.classList.add("active");
       }
-
-      if (isActive) tr.classList.add("active");
+      
       tbody.appendChild(tr);
     });
   }
