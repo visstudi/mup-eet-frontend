@@ -134,3 +134,41 @@ feedbackForm.addEventListener("submit", async (e) => {
     alert("Сетевая ошибка: " + err.message);
   }
 });
+
+function adaptCaptchaForMobile() {
+  if (/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) {
+    const layoutWidth = document.documentElement.clientWidth || 980;
+    const screenWidth = window.screen.width;
+    
+    const scale = layoutWidth / screenWidth;
+
+    if (scale > 1.2) {
+      const container = document.getElementById("captcha-container");
+      if (container) {
+        container.style.transform = `scale(${scale})`;
+        container.style.transformOrigin = "top left";
+        
+        container.style.width = `${100 / scale}%`;
+        container.style.marginBottom = `${100 * (scale - 1)}px`;
+      }
+
+      const observer = new MutationObserver((mutations) => {
+        for (let mutation of mutations) {
+          for (let node of mutation.addedNodes) {
+            if (node.nodeType === 1 && node.tagName === "DIV") {
+              const iframe = node.querySelector('iframe[src*="smartcaptcha"]');
+              if (iframe && !container.contains(node)) {
+                node.style.transform = `scale(${scale})`;
+                node.style.transformOrigin = "center center";
+              }
+            }
+          }
+        }
+      });
+      
+      observer.observe(document.body, { childList: true });
+    }
+  }
+}
+
+document.addEventListener("DOMContentLoaded", adaptCaptchaForMobile);
